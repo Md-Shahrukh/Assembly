@@ -1,0 +1,3 @@
+".\Objects\segment1.obj" 
+TO ".\Objects\IoT_energymeter" 
+PRINT(".\Listings\IoT_energymeter.m51") RAMSIZE(256) 

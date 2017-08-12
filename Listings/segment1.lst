@@ -1,0 +1,108 @@
+A51 MACRO ASSEMBLER  SEGMENT1                                                             06/04/2017 18:31:27 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\segment1.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE segment1.asm SET(SMALL) DEBUG PRINT(.\Listings\segment1.lst) OBJECT(C:\
+                      Users\SRK\Desktop\HEX\segment1.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1             org 00h
+0000 C2B0              2             CLR P3.0
+0002 7400              3     X5:     MOV A,#00
+0004 F8                4     X2:     MOV R0,A
+0005 B80008            5             CJNE R0,#00,X1
+0008 7590C0            6             MOV P1,#11000000B
+000B 04                7             INC A
+000C 1177              8             ACALL DELAY
+000E 80F4              9             SJMP X2
+0010 B80108           10     X1:     CJNE R0,#01,X3
+0013 7590F9           11             MOV P1,#11111001B
+0016 04               12             INC A
+0017 1177             13             ACALL DELAY
+0019 80E9             14             SJMP X2
+001B B80208           15     X3:     CJNE R0,#02,X4
+001E 7590A4           16             MOV P1,#10100100B
+0021 04               17             INC A
+0022 1177             18             ACALL DELAY
+0024 80DE             19             SJMP X2
+0026 B80308           20     X4:     CJNE R0,#03,X6
+0029 7590B0           21             MOV P1,#10110000B
+002C 04               22             INC A
+002D 1177             23             ACALL DELAY
+002F 80D3             24             SJMP X2
+0031 B80408           25     X6:     CJNE R0,#04,X7
+0034 759099           26             MOV P1,#10011001B
+0037 04               27             INC A
+0038 1177             28             ACALL DELAY
+003A 80C8             29             SJMP X2
+003C B80508           30     X7:     CJNE R0,#05,X8
+003F 759092           31             MOV P1,#10010010B
+0042 04               32             INC A
+0043 1177             33             ACALL DELAY
+0045 80BD             34             SJMP X2
+0047 B80608           35     X8:     CJNE R0,#06,X9
+004A 759082           36             MOV P1,#10000010B
+004D 04               37             INC A
+004E 1177             38             ACALL DELAY
+0050 80B2             39             SJMP X2
+0052 B80708           40     X9:     CJNE R0,#07,X10
+0055 7590F8           41             MOV P1,#11111000B
+0058 04               42             INC A
+0059 1177             43             ACALL DELAY
+005B 80A7             44             SJMP X2
+005D B80808           45     X10:CJNE R0,#08,X11
+0060 759080           46             MOV P1,#10000000B
+0063 04               47             INC A
+0064 1177             48             ACALL DELAY
+0066 809C             49             SJMP X2
+0068 B80908           50     X11:CJNE R0,#09,X12
+006B 759090           51             MOV P1,#10010000B
+006E 04               52             INC A
+006F 1177             53             ACALL DELAY
+0071 8091             54             SJMP X2
+0073 1177             55     X12:ACALL DELAY
+0075 808B             56             SJMP X5
+0077 790B             57     DELAY:MOV R1,#11
+A51 MACRO ASSEMBLER  SEGMENT1                                                             06/04/2017 18:31:27 PAGE     2
+
+0079 7AC8             58     Q3:     MOV R2,#200
+007B 7BC8             59     Q2:     MOV R3,#200
+007D DBFE             60     Q1:     DJNZ R3,Q1
+007F DAFA             61             DJNZ R2,Q2
+0081 D9F6             62             DJNZ R1,Q3
+0083 22               63             RET
+                      64             END
+A51 MACRO ASSEMBLER  SEGMENT1                                                             06/04/2017 18:31:27 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   0077H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+Q1 . . . . . . . .  C ADDR   007DH   A   
+Q2 . . . . . . . .  C ADDR   007BH   A   
+Q3 . . . . . . . .  C ADDR   0079H   A   
+X1 . . . . . . . .  C ADDR   0010H   A   
+X10. . . . . . . .  C ADDR   005DH   A   
+X11. . . . . . . .  C ADDR   0068H   A   
+X12. . . . . . . .  C ADDR   0073H   A   
+X2 . . . . . . . .  C ADDR   0004H   A   
+X3 . . . . . . . .  C ADDR   001BH   A   
+X4 . . . . . . . .  C ADDR   0026H   A   
+X5 . . . . . . . .  C ADDR   0002H   A   
+X6 . . . . . . . .  C ADDR   0031H   A   
+X7 . . . . . . . .  C ADDR   003CH   A   
+X8 . . . . . . . .  C ADDR   0047H   A   
+X9 . . . . . . . .  C ADDR   0052H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

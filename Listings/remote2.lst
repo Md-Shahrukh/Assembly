@@ -1,0 +1,198 @@
+A51 MACRO ASSEMBLER  REMOTE2                                                              07/09/2017 20:14:24 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\remote2.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE remote2.asm SET(SMALL) DEBUG PRINT(.\Listings\remote2.lst) OBJECT(C:\Us
+                      ers\SRK\Desktop\HEX\remote2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                             ORG     00H
+0000 020100            2                             LJMP    MAIN
+                       3                             
+0003                   4                             ORG             0003H
+0003 3162              5                             ACALL   AGC
+                       6                             
+0005 32                7                             RETI
+                       8                             
+000B                   9                             ORG     000BH
+000B 3176             10                             ACALL   CHECK_AGC
+000D 32               11                             RETI
+                      12                             
+001B                  13                             ORG             001BH
+001B 31A5             14                             ACALL   RE_CHECK
+001D 32               15                             RETI
+                      16                             
+0100                  17                             ORG 100H
+0100 900300           18     MAIN:           MOV             DPTR,#LCDCMD
+0103 93               19     MAIN1:          MOVC    A,@A+DPTR
+0104 6006             20                             JZ              X1
+0106 312E             21                             ACALL   CMD
+0108 A3               22                             INC             DPTR
+0109 E4               23                             CLR             A
+010A 80F7             24                             SJMP    MAIN1
+010C E4               25     X1:                     CLR             A
+010D 7A00             26                             MOV             R2,#00H
+010F 75A881           27                             MOV     IE,#10000001B
+0112 758802           28                             MOV     TCON,#02H
+0115 BA30FD           29     X2:                     CJNE    R2,#30H,X2
+0118 1201AA           30                             LCALL   READ
+011B 75A881           31                             MOV             IE,#10000001B
+011E 7A00             32                             MOV             R2,#00H
+0120 900306           33                             MOV             DPTR,#LCDRE
+0123 93               34     X3:                     MOVC    A,@A+DPTR
+0124 312E             35                             ACALL   CMD
+0126 60ED             36                             JZ              X2              
+0128 E4               37                             CLR     A
+0129 A3               38                             INC             DPTR
+012A 3155             39                             ACALL   DELAY1
+012C 80F5             40                             SJMP    X3
+                      41                             
+012E F5A0             42     CMD:            MOV     P2,A
+0130 C280             43                             CLR     P0.0
+0132 C281             44                             CLR     P0.1
+0134 D282             45                             SETB    P0.2
+0136 314C             46                             ACALL   DELAY
+0138 C282             47                             CLR             P0.2
+013A 22               48                             RET
+013B 7400             49     DAT1:           MOV             A,#00H                  
+013D 2430             50     DAT:            ADD             A,#30H
+013F F5A0             51                             MOV     P2,A
+0141 D280             52                             SETB    P0.0
+0143 C281             53                             CLR     P0.1
+0145 D282             54                             SETB    P0.2
+0147 314C             55                             ACALL   DELAY
+0149 C282             56                             CLR     P0.2
+014B 22               57                             RET
+A51 MACRO ASSEMBLER  REMOTE2                                                              07/09/2017 20:14:24 PAGE     2
+
+                      58                             
+                      59     
+014C 7D32             60     DELAY:          MOV     R5,#50
+014E 7C64             61     XX1:            MOV     R4,#100
+0150 DCFE             62     XX2:            DJNZ    R4,XX2
+0152 DDFA             63                             DJNZ    R5,XX1
+0154 22               64                             RET     
+                      65     
+0155 7D03             66     DELAY1:         MOV             R5,#3
+0157 7CFF             67     X11:            MOV             R4,#255
+0159 7BFF             68     X12:            MOV             R3,#255
+015B DBFE             69     X13:            DJNZ    R3,X13
+015D DCFA             70                             DJNZ    R4,X12
+015F DDF6             71                             DJNZ    R5,X11
+0161 22               72                             RET
+                      73     
+0162 E4               74     AGC:            CLR             A
+0163 313D             75                             ACALL   DAT
+0165 C2AF             76                             CLR             IE.7
+0167 75A882           77                             MOV             IE,#82H
+016A 758901           78                             MOV             TMOD,#01H
+016D 758CFB           79                             MOV             TH0,#0FBH
+0170 758A55           80                             MOV             TL0,#055H
+0173 D28C             81                             SETB    TR0
+0175 22               82                             RET
+                      83     
+0176 C28C             84     CHECK_AGC:      CLR             TR0
+0178 A2B2             85                             MOV     C,P3.2
+017A E4               86                             CLR     A
+017B 92E0             87                             MOV             ACC.0,C
+017D B40105           88                             CJNE    A,#01H,Q1
+0180 313D             89                             ACALL   DAT
+0182 7A30             90                             MOV             R2,#30H
+0184 22               91                             RET
+0185 C28C             92     Q1:                     CLR             TR0
+0187 C2AF             93                             CLR             IE.7
+0189 75A888           94                             MOV             IE,#10001000B
+018C 7801             95                             MOV             R0,#1
+018E 758910           96     Q2:                     MOV             TMOD,#10H
+0191 758D02           97                             MOV     TH1,#02H
+0194 758B00           98                             MOV             TL1,#00H
+0197 D28E             99                             SETB    TR1
+0199 308FFD          100     Z1:                     JNB             TF1,Z1
+019C C28E            101                             CLR             TR1
+019E C28F            102                             CLR             TF1
+01A0 D8EC            103                             DJNZ    R0,Q2
+01A2 7A1E            104                             MOV             R2,#30
+01A4 22              105                             RET
+                     106     
+01A5 C28E            107     RE_CHECK:       CLR             TR1
+01A7 7A30            108                             MOV             R2,#30H
+01A9 22              109                             RET
+                     110                             
+01AA 790C            111     READ:           MOV             R1,#0CH
+01AC 758901          112     READ1:          MOV             TMOD,#01H
+01AF 758CF9          113                             MOV             TH0,#0F9H
+01B2 758AC8          114                             MOV             TL0,#0C8H
+01B5 D28C            115                             SETB    TR0
+01B7 308DFD          116     Z2:                     JNB             TF0,Z2
+01BA A2B2            117                             MOV             C,P3.2
+01BC E4              118                             CLR             A
+01BD 92E0            119                             MOV             ACC.0,C
+01BF 313D            120                             ACALL   DAT
+01C1 314C            121                             ACALL   DELAY
+01C3 D9E7            122                             DJNZ    R1,READ1
+01C5 22              123                             RET
+A51 MACRO ASSEMBLER  REMOTE2                                                              07/09/2017 20:14:24 PAGE     3
+
+                     124     
+0300                 125                             ORG 300H
+0300 380E0601        126     LCDCMD:         DB              38H,0EH,06H,01H,80H,0
+0304 8000                    
+0306 0100            127     LCDRE:          DB              01,0
+                     128                             END
+A51 MACRO ASSEMBLER  REMOTE2                                                              07/09/2017 20:14:24 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ACC. . . . . . . .  D ADDR   00E0H   A   
+AGC. . . . . . . .  C ADDR   0162H   A   
+CHECK_AGC. . . . .  C ADDR   0176H   A   
+CMD. . . . . . . .  C ADDR   012EH   A   
+DAT. . . . . . . .  C ADDR   013DH   A   
+DAT1 . . . . . . .  C ADDR   013BH   A   
+DELAY. . . . . . .  C ADDR   014CH   A   
+DELAY1 . . . . . .  C ADDR   0155H   A   
+IE . . . . . . . .  D ADDR   00A8H   A   
+LCDCMD . . . . . .  C ADDR   0300H   A   
+LCDRE. . . . . . .  C ADDR   0306H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+MAIN1. . . . . . .  C ADDR   0103H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+Q1 . . . . . . . .  C ADDR   0185H   A   
+Q2 . . . . . . . .  C ADDR   018EH   A   
+READ . . . . . . .  C ADDR   01AAH   A   
+READ1. . . . . . .  C ADDR   01ACH   A   
+RE_CHECK . . . . .  C ADDR   01A5H   A   
+TCON . . . . . . .  D ADDR   0088H   A   
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TF1. . . . . . . .  B ADDR   0088H.7 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TL1. . . . . . . .  D ADDR   008BH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+X1 . . . . . . . .  C ADDR   010CH   A   
+X11. . . . . . . .  C ADDR   0157H   A   
+X12. . . . . . . .  C ADDR   0159H   A   
+X13. . . . . . . .  C ADDR   015BH   A   
+X2 . . . . . . . .  C ADDR   0115H   A   
+X3 . . . . . . . .  C ADDR   0123H   A   
+XX1. . . . . . . .  C ADDR   014EH   A   
+XX2. . . . . . . .  C ADDR   0150H   A   
+Z1 . . . . . . . .  C ADDR   0199H   A   
+Z2 . . . . . . . .  C ADDR   01B7H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

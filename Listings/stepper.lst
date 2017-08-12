@@ -1,0 +1,60 @@
+A51 MACRO ASSEMBLER  STEPPER                                                              06/18/2017 16:46:18 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\stepper.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE stepper.asm SET(SMALL) DEBUG PRINT(.\Listings\stepper.lst) OBJECT(C:\Us
+                      ers\SRK\Desktop\HEX\stepper.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                             ORG 00H
+0000 75A0FF            2                             MOV P2,#0FFH
+0003 1119              3             X5:             ACALL X2
+0005 1125              4                             ACALL DELAY
+0007 111D              5                             ACALL X3
+0009 1125              6                             ACALL DELAY
+000B 1115              7                             ACALL X1
+000D 1125              8                             ACALL DELAY
+000F 1121              9                             ACALL X4
+0011 1125             10                             ACALL DELAY
+0013 80EE             11                             SJMP X5
+                      12                             
+0015 75A0FE           13             X1:             MOV P2,#0FEH
+0018 22               14                             RET
+0019 75A0FD           15             X2:             MOV P2,#0FDH
+001C 22               16                             RET
+001D 75A0FB           17             X3:             MOV P2,#0FBH
+0020 22               18                             RET
+0021 75A0F7           19             X4:             MOV P2,#0F7H
+0024 22               20                             RET
+0025 7A1E             21             DELAY:  MOV R2,#30
+0027 7B1E             22             Q2:             MOV R3,#30
+0029 DBFE             23             Q3:             DJNZ R3,Q3
+002B DAFA             24                             DJNZ R2,Q2
+002D 22               25                             RET
+                      26                             
+                      27                             END
+A51 MACRO ASSEMBLER  STEPPER                                                              06/18/2017 16:46:18 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   0025H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+Q2 . . . . . . . .  C ADDR   0027H   A   
+Q3 . . . . . . . .  C ADDR   0029H   A   
+X1 . . . . . . . .  C ADDR   0015H   A   
+X2 . . . . . . . .  C ADDR   0019H   A   
+X3 . . . . . . . .  C ADDR   001DH   A   
+X4 . . . . . . . .  C ADDR   0021H   A   
+X5 . . . . . . . .  C ADDR   0003H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

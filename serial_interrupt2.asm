@@ -1,0 +1,84 @@
+			ORG 	00H
+			LJMP	X1
+			ORG		23H
+			JB		TI,Q1
+			JB		RI,Q2
+Q1:			CLR 	TI
+			CLR 	A
+			INC 	DPTR
+			MOVC 	A,@A+DPTR
+			JNZ		Q3
+			MOV 	DPTR,#DATA1
+			SJMP	Q1
+Q3:			MOV 	SBUF,A
+			RETI
+Q2:			CLR 	A
+			MOV 	A,SBUF
+			ACALL 	DAT
+			CLR 	RI
+			RETI
+			
+X1:			MOV 	A,#38H
+			ACALL 	CMD
+			ACALL 	DELAY
+			MOV 	A,#0EH
+			ACALL 	CMD
+			ACALL 	DELAY
+			MOV 	A,#01H
+			ACALL 	CMD
+			ACALL 	DELAY
+			MOV 	A,#06H
+			ACALL 	CMD
+			ACALL 	DELAY
+			MOV 	A,#80H
+			ACALL 	CMD
+			ACALL 	DELAY
+			MOV		IE,#10010000B			
+			MOV		TMOD,#20H
+			MOV		TH1,#-3
+			SETB	TR1
+			MOV		SCON,#50H
+			MOV		DPTR,#DATA1
+			MOVC	A,@A+DPTR
+			MOV		SBUF,A
+			MOV 	P3,#0FFH
+MAIN:		MOV 	P1,#0FFH
+			MOV		A,P1
+			CJNE 	A,#0FEH,X2
+			ACALL 	Z1
+X2:			CJNE 	A,#0FDH,MAIN
+			ACALL 	Z2
+			SJMP 	MAIN
+			
+Z1:			JNB 	P1.0,Z1
+			SETB  	P3.7
+			CLR 	P3.6
+			RET
+Z2:			JNB		P1.1,Z2
+			CLR		P3.7
+			CLR		P3.6
+			RET
+CMD: 		MOV 	P2,A
+			CLR 	P0.0
+			CLR 	P0.1
+			SETB 	P0.2
+			ACALL 	DELAY
+			CLR		P0.2
+			RET
+DAT:		MOV 	P2,A
+			SETB 	P0.0
+			CLR 	P0.1
+			SETB 	P0.2
+			ACALL 	DELAY
+			CLR 	P0.2
+			RET
+			
+DELAY: 		MOV 	R0,#200
+XX1:		MOV 	R1,#200
+XX2:		DJNZ	R1,XX2
+			DJNZ 	R0,XX1
+			RET		
+			
+			ORG		250H
+DATA1:		DB " MOTOR CONTROL ",0
+			END

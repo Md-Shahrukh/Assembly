@@ -1,0 +1,146 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/12/2017  18:37:43  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE C:\Users\SRK\Desktop\HEX\GSM_MSG.obj TO C:\Users\SRK\Desktop\HEX\rem_sir PRINT (.\Listings\r
+>> em_sir.m51) RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  C:\Users\SRK\Desktop\HEX\GSM_MSG.obj (GSM_MSG)
+
+
+LINK MAP OF MODULE:  C:\Users\SRK\Desktop\HEX\rem_sir (GSM_MSG)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0288H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  C:\Users\SRK\Desktop\HEX\rem_sir (GSM_MSG)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        GSM_MSG
+  C:007AH         SYMBOL        CMD
+  C:0250H         SYMBOL        COMMAND
+  C:0087H         SYMBOL        DAT
+  C:0094H         SYMBOL        DELAY
+  C:0256H         SYMBOL        GSM1
+  C:0261H         SYMBOL        GSM2
+  C:0276H         SYMBOL        GSM3
+  D:00A8H         SYMBOL        IE
+  D:0080H         SYMBOL        P0
+  D:00A0H         SYMBOL        P2
+  C:002BH         SYMBOL        Q1
+  C:003DH         SYMBOL        Q11
+  C:002FH         SYMBOL        Q12
+  C:0038H         SYMBOL        Q13
+  C:0048H         SYMBOL        Q2
+  C:0053H         SYMBOL        Q22
+  C:005AH         SYMBOL        Q3
+  C:005FH         SYMBOL        Q33
+  C:006AH         SYMBOL        Q4
+  C:006DH         SYMBOL        Q44
+  C:0078H         SYMBOL        Q5
+  B:0098H.0       SYMBOL        RI
+  D:0099H         SYMBOL        SBUF
+  B:0098H.1       SYMBOL        TI
+  C:009DH         SYMBOL        X2
+  C:0096H         SYMBOL        Z1
+  C:0098H         SYMBOL        Z2
+  C:0000H         LINE#         2
+  C:0023H         LINE#         4
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/12/2017  18:37:43  PAGE 2
+
+
+  C:0025H         LINE#         5
+  C:0026H         LINE#         6
+  C:0027H         LINE#         7
+  C:0029H         LINE#         8
+  C:002AH         LINE#         9
+  C:002BH         LINE#         11
+  C:002EH         LINE#         12
+  C:002FH         LINE#         13
+  C:0030H         LINE#         14
+  C:0032H         LINE#         15
+  C:0034H         LINE#         16
+  C:0035H         LINE#         17
+  C:0036H         LINE#         18
+  C:0038H         LINE#         19
+  C:003AH         LINE#         20
+  C:003DH         LINE#         21
+  C:003EH         LINE#         22
+  C:0040H         LINE#         23
+  C:0042H         LINE#         24
+  C:0044H         LINE#         25
+  C:0045H         LINE#         26
+  C:0046H         LINE#         27
+  C:0048H         LINE#         28
+  C:004BH         LINE#         29
+  C:004EH         LINE#         30
+  C:0051H         LINE#         31
+  C:0053H         LINE#         32
+  C:0054H         LINE#         33
+  C:0055H         LINE#         34
+  C:0057H         LINE#         35
+  C:0058H         LINE#         36
+  C:005AH         LINE#         38
+  C:005CH         LINE#         39
+  C:005FH         LINE#         40
+  C:0060H         LINE#         41
+  C:0062H         LINE#         42
+  C:0064H         LINE#         43
+  C:0066H         LINE#         44
+  C:0067H         LINE#         45
+  C:0068H         LINE#         46
+  C:006AH         LINE#         48
+  C:006DH         LINE#         49
+  C:006EH         LINE#         50
+  C:0070H         LINE#         51
+  C:0072H         LINE#         52
+  C:0074H         LINE#         53
+  C:0075H         LINE#         54
+  C:0076H         LINE#         55
+  C:0078H         LINE#         56
+  C:007AH         LINE#         58
+  C:007CH         LINE#         59
+  C:007EH         LINE#         60
+  C:0080H         LINE#         61
+  C:0082H         LINE#         62
+  C:0084H         LINE#         63
+  C:0086H         LINE#         64
+  C:0087H         LINE#         66
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/12/2017  18:37:43  PAGE 3
+
+
+  C:0089H         LINE#         67
+  C:008BH         LINE#         68
+  C:008DH         LINE#         69
+  C:008FH         LINE#         70
+  C:0091H         LINE#         71
+  C:0093H         LINE#         72
+  C:0094H         LINE#         75
+  C:0096H         LINE#         76
+  C:0098H         LINE#         77
+  C:009AH         LINE#         78
+  C:009CH         LINE#         79
+  C:009DH         LINE#         82
+  C:00A0H         LINE#         83
+  C:00A2H         LINE#         84
+  -------         ENDMOD        GSM_MSG
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00BAH BYTE ( 9%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=648
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

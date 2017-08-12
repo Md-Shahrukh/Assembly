@@ -1,0 +1,139 @@
+A51 MACRO ASSEMBLER  SERIAL_INTERRUPT2                                                    06/28/2017 17:35:06 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\serial_interrupt2.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE serial_interrupt2.asm SET(SMALL) DEBUG PRINT(.\Listings\serial_interrup
+                      t2.lst) OBJECT(C:\Users\SRK\Desktop\HEX\serial_interrupt2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                             ORG     00H
+0000 020040            2                             LJMP    X1
+0023                   3                             ORG             23H
+0023 209903            4                             JB              TI,Q1
+0026 20980F            5                             JB              RI,Q2
+0029 C299              6     Q1:                     CLR     TI
+002B E4                7                             CLR     A
+002C A3                8                             INC     DPTR
+002D 93                9                             MOVC    A,@A+DPTR
+002E 7005             10                             JNZ             Q3
+0030 900250           11                             MOV     DPTR,#DATA1
+0033 80F4             12                             SJMP    Q1
+0035 F599             13     Q3:                     MOV     SBUF,A
+0037 32               14                             RETI
+0038 E4               15     Q2:                     CLR     A
+0039 E599             16                             MOV     A,SBUF
+003B 11A3             17                             ACALL   DAT
+003D C298             18                             CLR     RI
+003F 32               19                             RETI
+                      20                             
+0040 7438             21     X1:                     MOV     A,#38H
+0042 1196             22                             ACALL   CMD
+0044 11B0             23                             ACALL   DELAY
+0046 740E             24                             MOV     A,#0EH
+0048 1196             25                             ACALL   CMD
+004A 11B0             26                             ACALL   DELAY
+004C 7401             27                             MOV     A,#01H
+004E 1196             28                             ACALL   CMD
+0050 11B0             29                             ACALL   DELAY
+0052 7406             30                             MOV     A,#06H
+0054 1196             31                             ACALL   CMD
+0056 11B0             32                             ACALL   DELAY
+0058 7480             33                             MOV     A,#80H
+005A 1196             34                             ACALL   CMD
+005C 11B0             35                             ACALL   DELAY
+005E 75A890           36                             MOV             IE,#10010000B                   
+0061 758920           37                             MOV             TMOD,#20H
+0064 758DFD           38                             MOV             TH1,#-3
+0067 D28E             39                             SETB    TR1
+0069 759850           40                             MOV             SCON,#50H
+006C 900250           41                             MOV             DPTR,#DATA1
+006F 93               42                             MOVC    A,@A+DPTR
+0070 F599             43                             MOV             SBUF,A
+0072 75B0FF           44                             MOV     P3,#0FFH
+0075 7590FF           45     MAIN:           MOV     P1,#0FFH
+0078 E590             46                             MOV             A,P1
+007A B4FE02           47                             CJNE    A,#0FEH,X2
+007D 1186             48                             ACALL   Z1
+007F B4FDF3           49     X2:                     CJNE    A,#0FDH,MAIN
+0082 118E             50                             ACALL   Z2
+0084 80EF             51                             SJMP    MAIN
+                      52                             
+0086 3090FD           53     Z1:                     JNB     P1.0,Z1
+0089 D2B7             54                             SETB    P3.7
+008B C2B6             55                             CLR     P3.6
+008D 22               56                             RET
+008E 3091FD           57     Z2:                     JNB             P1.1,Z2
+A51 MACRO ASSEMBLER  SERIAL_INTERRUPT2                                                    06/28/2017 17:35:06 PAGE     2
+
+0091 C2B7             58                             CLR             P3.7
+0093 C2B6             59                             CLR             P3.6
+0095 22               60                             RET
+0096 F5A0             61     CMD:            MOV     P2,A
+0098 C280             62                             CLR     P0.0
+009A C281             63                             CLR     P0.1
+009C D282             64                             SETB    P0.2
+009E 11B0             65                             ACALL   DELAY
+00A0 C282             66                             CLR             P0.2
+00A2 22               67                             RET
+00A3 F5A0             68     DAT:            MOV     P2,A
+00A5 D280             69                             SETB    P0.0
+00A7 C281             70                             CLR     P0.1
+00A9 D282             71                             SETB    P0.2
+00AB 11B0             72                             ACALL   DELAY
+00AD C282             73                             CLR     P0.2
+00AF 22               74                             RET
+                      75                             
+00B0 78C8             76     DELAY:          MOV     R0,#200
+00B2 79C8             77     XX1:            MOV     R1,#200
+00B4 D9FE             78     XX2:            DJNZ    R1,XX2
+00B6 D8FA             79                             DJNZ    R0,XX1
+00B8 22               80                             RET             
+                      81                             
+0250                  82                             ORG             250H
+0250 204D4F54         83     DATA1:          DB " MOTOR CONTROL ",0
+0254 4F522043                
+0258 4F4E5452                
+025C 4F4C2000                
+                      84                             END
+A51 MACRO ASSEMBLER  SERIAL_INTERRUPT2                                                    06/28/2017 17:35:06 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+CMD. . . . . . . .  C ADDR   0096H   A   
+DAT. . . . . . . .  C ADDR   00A3H   A   
+DATA1. . . . . . .  C ADDR   0250H   A   
+DELAY. . . . . . .  C ADDR   00B0H   A   
+IE . . . . . . . .  D ADDR   00A8H   A   
+MAIN . . . . . . .  C ADDR   0075H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+Q1 . . . . . . . .  C ADDR   0029H   A   
+Q2 . . . . . . . .  C ADDR   0038H   A   
+Q3 . . . . . . . .  C ADDR   0035H   A   
+RI . . . . . . . .  B ADDR   0098H.0 A   
+SBUF . . . . . . .  D ADDR   0099H   A   
+SCON . . . . . . .  D ADDR   0098H   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TI . . . . . . . .  B ADDR   0098H.1 A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+X1 . . . . . . . .  C ADDR   0040H   A   
+X2 . . . . . . . .  C ADDR   007FH   A   
+XX1. . . . . . . .  C ADDR   00B2H   A   
+XX2. . . . . . . .  C ADDR   00B4H   A   
+Z1 . . . . . . . .  C ADDR   0086H   A   
+Z2 . . . . . . . .  C ADDR   008EH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,50 @@
+A51 MACRO ASSEMBLER  EPROM_READ                                                           06/19/2017 11:53:29 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\eprom_read.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE eprom_read.asm SET(SMALL) DEBUG PRINT(.\Listings\eprom_read.lst) OBJECT
+                      (C:\Users\SRK\Desktop\HEX\eprom_read.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+  0096                 1                             WMCON EQU 96H
+0000                   2                             ORG 00H
+0000 758920            3                             MOV TMOD,#20H
+0003 758DFD            4                             MOV TH1,#-3
+0006 D28E              5                             SETB TR1
+0008 759850            6                             MOV SCON,#50H
+000B 75960A            7                             MOV WMCON,#00001010B
+000E 900100            8                             MOV DPTR,#100H
+0011 E0                9                             MOVX A,@DPTR
+0012 F599             10                             MOV SBUF,A
+0014 1118             11                             ACALL X1
+0016 80FE             12                             SJMP $
+                      13                                     
+0018 3099FD           14     X1:                     JNB TI,X1
+001B C299             15                             CLR TI
+001D 22               16                             RET
+                      17                             
+                      18                             END
+A51 MACRO ASSEMBLER  EPROM_READ                                                           06/19/2017 11:53:29 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+SBUF . . . . . . .  D ADDR   0099H   A   
+SCON . . . . . . .  D ADDR   0098H   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TI . . . . . . . .  B ADDR   0098H.1 A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+WMCON. . . . . . .  N NUMB   0096H   A   
+X1 . . . . . . . .  C ADDR   0018H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

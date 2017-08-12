@@ -1,0 +1,70 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/20/2017  18:19:54  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE C:\Users\SRK\Desktop\HEX\rsp_1.obj TO C:\Users\SRK\Desktop\HEX\RSP_1 PRINT (.\Listings\RSP_1
+>> .m51) RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  C:\Users\SRK\Desktop\HEX\rsp_1.obj (RSP_1)
+
+
+LINK MAP OF MODULE:  C:\Users\SRK\Desktop\HEX\RSP_1 (RSP_1)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     025EH     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  C:\Users\SRK\Desktop\HEX\RSP_1 (RSP_1)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        RSP_1
+  C:0250H         SYMBOL        DAT1
+  D:0099H         SYMBOL        SBUF
+  D:0098H         SYMBOL        SCON
+  D:008DH         SYMBOL        TH1
+  B:0098H.1       SYMBOL        TI
+  D:0089H         SYMBOL        TMOD
+  B:0088H.6       SYMBOL        TR1
+  C:001DH         SYMBOL        X1
+  C:0010H         SYMBOL        X2
+  C:0002H         SYMBOL        X3
+  C:0000H         LINE#         2
+  C:0002H         LINE#         3
+  C:0005H         LINE#         4
+  C:0008H         LINE#         5
+  C:000AH         LINE#         6
+  C:000DH         LINE#         7
+  C:0010H         LINE#         8
+  C:0011H         LINE#         9
+  C:0013H         LINE#         10
+  C:0015H         LINE#         11
+  C:0017H         LINE#         12
+  C:0018H         LINE#         13
+  C:0019H         LINE#         14
+  C:001BH         LINE#         15
+  C:001DH         LINE#         17
+  C:0020H         LINE#         18
+  C:0022H         LINE#         19
+  -------         ENDMOD        RSP_1
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/20/2017  18:19:54  PAGE 2
+
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0031H BYTE ( 2%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=606
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

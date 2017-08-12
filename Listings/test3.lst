@@ -1,0 +1,75 @@
+A51 MACRO ASSEMBLER  TEST3                                                                06/04/2017 14:14:39 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN .\Objects\test3.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE test3.asm SET(SMALL) DEBUG PRINT(.\Listings\test3.lst) OBJECT(.\Objects
+                      \test3.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                             org 00h
+0000 7800              2                     L3: MOV R0,#00
+0002 7900              3                             MOV R1,#00
+0004 7A00              4                             MOV R2,#00
+0006 7B00              5                             MOV R3,#00
+0008 08                6                     L4: INC R0
+0009 B80A1E            7                             CJNE R0,#10,L1
+000C 7800              8                             MOV R0,#00
+000E 09                9                             INC R1
+000F B90618           10                             CJNE R1,#6,L1
+0012 7900             11                             MOV R1,#00
+0014 BB0009           12                             CJNE R3,#00,L2
+0017 0A               13                             INC R2
+0018 BA0A0F           14                             CJNE R2,#10,L1
+001B 7A00             15                             MOV R2,#00
+001D 0B               16                             INC R3
+001E 80E8             17                             SJMP L4
+0020 0A               18                     L2: INC R2
+0021 BA0306           19                             CJNE R2,#03,L1
+0024 7A0A             20                             MOV R2,#10
+0026 7A00             21                             MOV R2,#00
+0028 80D6             22                             SJMP L3
+002A E9               23                     L1: MOV A,R1
+002B C4               24                             SWAP A
+002C 28               25                             ADD A,R0
+002D F590             26                             MOV P1,A
+002F EB               27                             MOV A,R3
+0030 C4               28                             SWAP A
+0031 2A               29                             ADD A,R2
+0032 F5A0             30                             MOV P2,A
+0034 1138             31                             ACALL DELAY
+0036 80D0             32                             SJMP L4
+0038 7C06             33             DELAY:  MOV R4,#6
+003A 7DC8             34                     X1: MOV R5,#200
+003C 7EC8             35                     X2: MOV R6,#200
+003E DEFE             36                     X3:     DJNZ R6,X3
+0040 DDFA             37                             DJNZ R5,X2
+0042 DCF6             38                             DJNZ R4,X1
+0044 22               39                             RET
+                      40                             
+                      41                             END
+A51 MACRO ASSEMBLER  TEST3                                                                06/04/2017 14:14:39 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   0038H   A   
+L1 . . . . . . . .  C ADDR   002AH   A   
+L2 . . . . . . . .  C ADDR   0020H   A   
+L3 . . . . . . . .  C ADDR   0000H   A   
+L4 . . . . . . . .  C ADDR   0008H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+X1 . . . . . . . .  C ADDR   003AH   A   
+X2 . . . . . . . .  C ADDR   003CH   A   
+X3 . . . . . . . .  C ADDR   003EH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

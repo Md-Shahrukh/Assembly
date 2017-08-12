@@ -1,0 +1,97 @@
+A51 MACRO ASSEMBLER  SRK1                                                                 06/04/2017 18:15:46 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN .\Objects\srk1.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE srk1.asm SET(SMALL) DEBUG PRINT(.\Listings\srk1.lst) OBJECT(.\Objects\s
+                      rk1.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                                     ORG             00H
+0000 900039            2                                     MOV             DPTR,   #NK1
+0003 93                3                      X3:    MOVC            A,@ A+DPTR
+0004 6006              4                                     JZ                      SK3
+0006 1126              5                                     ACALL           SEND
+0008 A3                6                                     INC                     DPTR
+0009 E4                7                                     CLR                     A
+000A 80F7              8                                     SJMP            X3
+                       9                                     
+000C 900043           10             SK3:    MOV             DPTR,   #NK2
+000F 93               11                      X4:    MOVC            A,@ A+DPTR
+0010 6006             12                                     JZ                      SK4
+0012 1126             13                                     ACALL           SEND
+0014 A3               14                                     INC                     DPTR
+0015 E4               15                                     CLR                     A
+0016 80F7             16                                     SJMP            X4
+                      17                     
+0018 900056           18             SK4:    MOV             DPTR,   #NK3
+001B 93               19                      X5:    MOVC            A,@ A+DPTR
+001C 6006             20                                     JZ                      BYE1
+001E 1126             21                                     ACALL           SEND
+0020 A3               22                                     INC                     DPTR
+0021 E4               23                                     CLR                     A
+0022 80F7             24                                     SJMP            X5              
+0024 80FE             25               BYE1:     SJMP        BYE1                            
+                      26     
+0026 758920           27               SEND:     MOV                 TMOD ,#20H
+0029 758DFD           28                                     MOV             TH1,#-3
+002C D28E             29                                     SETB            TR1
+002E 759850           30                                     MOV         SCON,#50H
+0031 F599             31                                     MOV                     SBUF,A
+0033 3099FD           32            X31:             JNB                     TI,X31
+0036 C299             33                                     CLR             TI
+0038 22               34                                     RET
+                      35                                     
+                      36     
+                      37                                     
+0039 41542B43         38            NK1:     DB                      "AT+CMGF=1",0
+003D 4D47463D                
+0041 3100                    
+0043 41542B43         39                NK2:     DB                  "AT+CMGS=7077113709",0
+0047 4D47533D                
+004B 37303737                
+004F 31313337                
+0053 303900                  
+0056 53494C49         40            NK3:     DB                      "SILICON INSTITUTE OF TECHNOLOGY",0
+005A 434F4E20                
+005E 494E5354                
+0062 49545554                
+0066 45204F46                
+006A 20544543                
+006E 484E4F4C                
+0072 4F475900                
+0076                  41                BYE:                         
+                      42     END
+A51 MACRO ASSEMBLER  SRK1                                                                 06/04/2017 18:15:46 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BYE. . . . . . . .  C ADDR   0076H   A   
+BYE1 . . . . . . .  C ADDR   0024H   A   
+NK1. . . . . . . .  C ADDR   0039H   A   
+NK2. . . . . . . .  C ADDR   0043H   A   
+NK3. . . . . . . .  C ADDR   0056H   A   
+SBUF . . . . . . .  D ADDR   0099H   A   
+SCON . . . . . . .  D ADDR   0098H   A   
+SEND . . . . . . .  C ADDR   0026H   A   
+SK3. . . . . . . .  C ADDR   000CH   A   
+SK4. . . . . . . .  C ADDR   0018H   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TI . . . . . . . .  B ADDR   0098H.1 A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+X3 . . . . . . . .  C ADDR   0003H   A   
+X31. . . . . . . .  C ADDR   0033H   A   
+X4 . . . . . . . .  C ADDR   000FH   A   
+X5 . . . . . . . .  C ADDR   001BH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

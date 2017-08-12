@@ -1,0 +1,123 @@
+A51 MACRO ASSEMBLER  MATRIXKEY1                                                           07/19/2017 16:49:55 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\matrixkey1.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE matrixkey1.asm SET(SMALL) DEBUG PRINT(.\Listings\matrixkey1.lst) OBJECT
+                      (C:\Users\SRK\Desktop\HEX\matrixkey1.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                     ORG 00H
+0000 75A0FF            2                     MOV P2,#0FFH
+0003 759000            3     X0:             MOV P1,#00H
+0006 E5A0              4                     MOV A,P2
+0008 B4FF02            5                     CJNE A,#0FFH,X2
+000B 80F6              6                     SJMP X0
+000D 7590FF            7     X2:             MOV P1,#0FFH
+0010 C290              8                     CLR P1.0
+0012 E5A0              9                     MOV A,P2
+0014 B4FF02           10                     CJNE A,#0FFH,X3
+0017 8024             11                     SJMP X4
+0019 E5A0             12     X3:             MOV A,P2
+001B B4FE07           13                     CJNE A,#0FEH,X5
+001E 7580C0           14                     MOV P0,#11000000B
+0021 11A0             15                     ACALL DELAY
+0023 80DE             16                     SJMP X0
+0025 E5A0             17     X5:             MOV A,P2
+0027 B4FD07           18                     CJNE A,#0FDH,X6
+002A 7580F9           19                     MOV P0,#11111001B
+002D 11A0             20                     ACALL DELAY
+002F 80D2             21                     SJMP X0
+0031 E5A0             22     X6:             MOV A,P2
+0033 B4FBCD           23                     CJNE A,#11111011B,X0
+0036 7580A4           24                     MOV P0,#10100100B
+0039 11A0             25                     ACALL DELAY
+003B 80C6             26                     SJMP X0
+003D D290             27     X4:             SETB P1.0
+003F C291             28                     CLR P1.1
+0041 E5A0             29                     MOV A,P2
+0043 B4FF02           30                     CJNE A,#0FFH,X7
+0046 8024             31                     SJMP X8
+0048 E5A0             32     X7:             MOV A,P2
+004A B4FE07           33                     CJNE A,#11111110B,X9
+004D 7580B0           34                     MOV P0,#10110000B
+0050 11A0             35                     ACALL DELAY
+0052 80AF             36                     SJMP X0
+0054 E5A0             37     X9:             MOV A,P2
+0056 B4FD07           38                     CJNE A,#11111101B,X10
+0059 758099           39                     MOV P0,#10011001B
+005C 11A0             40                     ACALL DELAY
+005E 80A3             41                     SJMP X0
+0060 E5A0             42     X10:    MOV A,P2
+0062 B4FB9E           43                     CJNE A,#11111011B,X0
+0065 758092           44                     MOV P0,#10010010B
+0068 11A0             45                     ACALL DELAY
+006A 8097             46                     SJMP X0
+006C D291             47     X8:             SETB P1.1
+006E C292             48                     CLR P1.2
+0070 E5A0             49                     MOV A,P2
+0072 B4FF02           50                     CJNE A,#0FFH,X11
+0075 808C             51                     SJMP X0
+0077 E5A0             52     X11:    MOV A,P2
+0079 B4FE07           53                     CJNE A,#11111110B,X12
+007C 758082           54                     MOV P0,#10000010B
+007F 11A0             55                     ACALL DELAY
+0081 8080             56                     SJMP X0
+0083 E5A0             57     X12:    MOV A,P2
+A51 MACRO ASSEMBLER  MATRIXKEY1                                                           07/19/2017 16:49:55 PAGE     2
+
+0085 B4FD08           58                     CJNE A,#11111101B,X13
+0088 7580F8           59                     MOV P0,#11111000B
+008B 11A0             60                     ACALL DELAY
+008D 020003           61                     LJMP X0
+0090 E5A0             62     X13:    MOV A,P2
+0092 B4FB08           63                     CJNE A,#11111011B,X14
+0095 758080           64                     MOV P0,#10000000B
+0098 11A0             65                     ACALL DELAY
+009A 020003           66                     LJMP X0
+009D 020003           67     X14:    LJMP X0
+00A0 7803             68     DELAY:  MOV R0,#3
+00A2 79C8             69     Q3:             MOV R1,#200
+00A4 7AC8             70     Q2:             MOV R2,#200
+00A6 DAFE             71     Q1:             DJNZ R2,Q1
+00A8 D9FA             72                     DJNZ R1,Q2
+00AA D8F6             73                     DJNZ R0,Q3
+00AC 22               74                     RET
+                      75                     END
+                                             
+A51 MACRO ASSEMBLER  MATRIXKEY1                                                           07/19/2017 16:49:55 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   00A0H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+Q1 . . . . . . . .  C ADDR   00A6H   A   
+Q2 . . . . . . . .  C ADDR   00A4H   A   
+Q3 . . . . . . . .  C ADDR   00A2H   A   
+X0 . . . . . . . .  C ADDR   0003H   A   
+X10. . . . . . . .  C ADDR   0060H   A   
+X11. . . . . . . .  C ADDR   0077H   A   
+X12. . . . . . . .  C ADDR   0083H   A   
+X13. . . . . . . .  C ADDR   0090H   A   
+X14. . . . . . . .  C ADDR   009DH   A   
+X2 . . . . . . . .  C ADDR   000DH   A   
+X3 . . . . . . . .  C ADDR   0019H   A   
+X4 . . . . . . . .  C ADDR   003DH   A   
+X5 . . . . . . . .  C ADDR   0025H   A   
+X6 . . . . . . . .  C ADDR   0031H   A   
+X7 . . . . . . . .  C ADDR   0048H   A   
+X8 . . . . . . . .  C ADDR   006CH   A   
+X9 . . . . . . . .  C ADDR   0054H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

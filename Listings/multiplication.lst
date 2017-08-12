@@ -1,0 +1,122 @@
+A51 MACRO ASSEMBLER  MULTIPLICATION                                                       07/19/2017 18:56:35 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\multiplication.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE multiplication.asm SET(SMALL) DEBUG PRINT(.\Listings\multiplication.lst
+                      ) OBJECT(C:\Users\SRK\Desktop\HEX\multiplication.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                             org 00h
+                       2                             
+0000 ED                3                             MOV A,R5 
+0001 8FF0              4                             MOV B,R7 
+0003 A4                5                             MUL AB   
+0004 AAF0              6                             MOV R2,B 
+0006 FB                7                             MOV R3,A 
+0007 ED                8                             MOV A,R5    
+0008 8EF0              9      MOV B,R6    
+000A A4               10      MUL AB      
+000B 2A               11      ADD A,R2    
+000C FA               12      MOV R2,A    
+000D E5F0             13      MOV A,B     
+000F 3400             14      ADDC A,#00h 
+0011 F9               15      MOV R1,A    
+0012 7400             16      MOV A,#00h  
+0014 3400             17      ADDC A,#00h 
+0016 F8               18      MOV R0,A    
+                      19     
+0017 EC               20      MOV A,R4   
+0018 8FF0             21      MOV B,R7   
+001A A4               22      MUL AB     
+001B 2A               23      ADD A,R2  
+001C FA               24      MOV R2,A   
+001D E5F0             25      MOV A,B    
+001F 39               26      ADDC A,R1  
+0020 F9               27      MOV R1,A   
+0021 7400             28      MOV A,#00h ;Load the accumulator with zero
+0023 38               29      ADDC A,R0  ;Add the current value of R0 (plus any carry)
+0024 F8               30      MOV R0,A   ;Move the resulting answer to R1.
+0025 EC               31      MOV A,R4  ;Move R4 back into the Accumulator
+0026 8EF0             32      MOV B,R6  ;Move R6 into B
+0028 A4               33      MUL AB    ;Multiply the two values
+0029 29               34      ADD A,R1  ;Add the low-byte into the value already in R1
+002A F9               35      MOV R1,A  ;Move the resulting value back into R1
+002B E5F0             36      MOV A,B   ;Move the high-byte into the accumulator
+002D 38               37      ADDC A,R0 ;Add it to the value already in R0 (plus any carry)
+002E F8               38      MOV R0,A  ;Move the resulting answer back to R0
+002F                  39     MUL16_16: 
+                      40      ;Multiply R5 by R7
+002F ED               41      MOV A,R5 ;Move the R5 into the Accumulator
+0030 8FF0             42      MOV B,R7 ;Move R7 into B
+0032 A4               43      MUL AB   ;Multiply the two values
+0033 AAF0             44      MOV R2,B ;Move B (the high-byte) into R2
+0035 FB               45      MOV R3,A ;Move A (the low-byte) into R3
+                      46     
+                      47      ;Multiply R5 by R6
+0036 ED               48      MOV A,R5    ;Move R5 back into the Accumulator
+0037 8EF0             49      MOV B,R6    ;Move R6 into B
+0039 A4               50      MUL AB      ;Multiply the two values
+003A 2A               51      ADD A,R2    ;Add the low-byte into the value already in R2
+003B FA               52      MOV R2,A    ;Move the resulting value back into R2
+003C E5F0             53      MOV A,B     ;Move the high-byte into the accumulator
+003E 3400             54      ADDC A,#00h ;Add zero (plus the carry, if any)
+0040 F9               55      MOV R1,A    ;Move the resulting answer into R1
+0041 7400             56      MOV A,#00h  ;Load the accumulator with  zero
+0043 3400             57      ADDC A,#00h ;Add zero (plus the carry, if any)
+A51 MACRO ASSEMBLER  MULTIPLICATION                                                       07/19/2017 18:56:35 PAGE     2
+
+0045 F8               58      MOV R0,A    ;Move the resulting answer to R0.
+                      59     
+                      60      ;Multiply R4 by R7
+0046 EC               61      MOV A,R4   ;Move R4 into the Accumulator
+0047 8FF0             62      MOV B,R7   ;Move R7 into B
+0049 A4               63      MUL AB     ;Multiply the two values
+004A 2A               64      ADD A,R2   ;Add the low-byte into the value already in R2
+004B FA               65      MOV R2,A   ;Move the resulting value back into R2
+004C E5F0             66      MOV A,B    ;Move the high-byte into the accumulator
+004E 39               67      ADDC A,R1  ;Add the current value of R1 (plus any carry)
+004F F9               68      MOV R1,A   ;Move the resulting answer into R1.
+0050 7400             69      MOV A,#00h ;Load the accumulator with zero
+0052 38               70      ADDC A,R0  ;Add the current value of R0 (plus any carry)
+0053 F8               71      MOV R0,A   ;Move the resulting answer to R1.
+                      72      ;Multiply R4 by R6
+0054 EC               73      MOV A,R4  ;Move R4 back into the Accumulator
+0055 8EF0             74      MOV B,R6  ;Move R6 into B
+0057 A4               75      MUL AB    ;Multiply the two values
+0058 29               76      ADD A,R1  ;Add the low-byte into the value already in R1
+0059 F9               77      MOV R1,A  ;Move the resulting value back into R1
+005A E5F0             78      MOV A,B   ;Move the high-byte into the accumulator
+005C 38               79      ADDC A,R0 ;Add it to the value already in R0 (plus any carry)
+005D F8               80      MOV R0,A  ;Move the resulting answer back to R0
+                      81     
+                      82      ;Return - answer is now in R0, R1, R2, and R3
+005E 22               83      RET
+                      84      ;Load the first value into R6 and R7
+005F 7E62             85      MOV R6,#62h
+0061 7F30             86      MOV R7,#30h
+                      87      
+                      88      ;Load the first value into R4 and R5
+0063 7C43             89      MOV R4,#43h
+0065 7D2E             90      MOV R5,#2Eh
+                      91     
+                      92      ;Call the 16-bit subtraction routine
+0067 12002F           93      LCALL MUL16_16 
+                      94      end
+A51 MACRO ASSEMBLER  MULTIPLICATION                                                       07/19/2017 18:56:35 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+MUL16_16 . . . . .  C ADDR   002FH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

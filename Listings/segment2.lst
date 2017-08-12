@@ -1,0 +1,47 @@
+A51 MACRO ASSEMBLER  SEGMENT2                                                             06/04/2017 19:46:12 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\segment2.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE segment2.asm SET(SMALL) DEBUG PRINT(.\Listings\segment2.lst) OBJECT(C:\
+                      Users\SRK\Desktop\HEX\segment2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                     org 00h
+0000 7402              2     X3:             MOV A,#02
+0002 75B0FE            3                     MOV P3,#11111110B
+0005 7590A4            4                     MOV P1,#10100100B
+0008 1116              5                     ACALL DELAY
+000A E503              6                     MOV A,03
+000C 75B0FD            7                     MOV P3,#11111101B
+000F 7590B0            8                     MOV P1,#10110000B
+0012 1116              9                     ACALL DELAY
+0014 80EA             10                     SJMP X3
+0016 7864             11     DELAY:  MOV R0,#100
+0018 7932             12     X1:             MOV R1,#50
+001A D9FE             13     X2:             DJNZ R1,X2
+001C D8FA             14                     DJNZ R0,X1
+                      15                     
+001E 22               16                     RET
+                      17                     END
+A51 MACRO ASSEMBLER  SEGMENT2                                                             06/04/2017 19:46:12 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   0016H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+X1 . . . . . . . .  C ADDR   0018H   A   
+X2 . . . . . . . .  C ADDR   001AH   A   
+X3 . . . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

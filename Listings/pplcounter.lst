@@ -1,0 +1,92 @@
+A51 MACRO ASSEMBLER  PPLCOUNTER                                                           06/06/2017 16:17:11 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\pplcounter.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE pplcounter.asm SET(SMALL) DEBUG PRINT(.\Listings\pplcounter.lst) OBJECT
+                      (C:\Users\SRK\Desktop\HEX\pplcounter.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                     ORG 00H
+0000 7530C0            2                     MOV 30H,#11000000B
+0003 7531F9            3                     MOV 31H,#11111001B
+0006 7532A4            4                     MOV 32H,#10100100B
+0009 7533B0            5                     MOV 33H,#10110000B
+000C 753499            6                     MOV 34H,#10011001B
+000F 753592            7                     MOV 35H,#10010010B
+0012 753682            8                     MOV 36H,#10000010B
+0015 7537F8            9                     MOV 37H,#11111000B
+0018 753880           10                     MOV 38H,#10000000B
+001B 753990           11                     MOV 39H,#10010000B
+001E 7830             12     X5:             MOV R0,#30H
+0020 79C8             13     X9:             MOV R1,#200
+0022 7AC8             14                     MOV R2,#200
+0024 7B64             15                     MOV R3,#100
+0026 C280             16     X2:             CLR P0.0
+0028 C281             17                     CLR P0.1
+002A 308013           18                     JNB P0.0,X1
+002D 308108           19     X3:             JNB P0.1,X4
+0030 08               20                     INC R0
+0031 1161             21                     ACALL DELAY
+0033 B83A26           22                     CJNE R0,#3AH,X6
+0036 80E6             23                     SJMP X5
+0038 D9F3             24     X4:             DJNZ R1,X3
+003A DAF1             25                     DJNZ R2,X3
+003C DBEF             26                     DJNZ R3,X3
+003E 80E0             27                     SJMP X9
+                      28                     
+0040 79C8             29     X1:             MOV R1,#200
+0042 7AC8             30                     MOV R2,#200
+0044 7B64             31                     MOV R3,#100
+0046 3081DD           32                     JNB P0.1,X2
+0049 308008           33     X8:             JNB P0.0,X7
+004C 18               34                     DEC R0
+004D 1161             35                     ACALL DELAY
+004F B8000A           36                     CJNE R0,#00,X6
+0052 80CA             37                     SJMP X5
+0054 D9F3             38     X7:             DJNZ R1,X8
+0056 DAF1             39                     DJNZ R2,X8
+0058 DBEF             40                     DJNZ R3,X8
+005A 80C4             41                     SJMP X9
+                      42                     
+005C E6               43     X6:             MOV A,@R0
+005D F590             44                     MOV P1,A
+005F 80C5             45                     SJMP X2
+0061 790B             46     DELAY:  MOV R1,#11
+0063 7AC8             47     Q3:             MOV R2,#200
+0065 7BC8             48     Q2:             MOV R3,#200
+0067 DBFE             49     Q1:             DJNZ R3,Q1
+0069 DAFA             50                     DJNZ R2,Q2
+006B D9F6             51                     DJNZ R1,Q3
+006D 22               52                     RET
+                      53                     END
+A51 MACRO ASSEMBLER  PPLCOUNTER                                                           06/06/2017 16:17:11 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   0061H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+Q1 . . . . . . . .  C ADDR   0067H   A   
+Q2 . . . . . . . .  C ADDR   0065H   A   
+Q3 . . . . . . . .  C ADDR   0063H   A   
+X1 . . . . . . . .  C ADDR   0040H   A   
+X2 . . . . . . . .  C ADDR   0026H   A   
+X3 . . . . . . . .  C ADDR   002DH   A   
+X4 . . . . . . . .  C ADDR   0038H   A   
+X5 . . . . . . . .  C ADDR   001EH   A   
+X6 . . . . . . . .  C ADDR   005CH   A   
+X7 . . . . . . . .  C ADDR   0054H   A   
+X8 . . . . . . . .  C ADDR   0049H   A   
+X9 . . . . . . . .  C ADDR   0020H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

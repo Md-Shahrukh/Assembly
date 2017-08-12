@@ -1,0 +1,170 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/11/2017  17:16:52  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE C:\Users\SRK\Desktop\HEX\motorctrl.obj TO C:\Users\SRK\Desktop\HEX\mot PRINT (.\Listings\mot
+>> .m51) RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  C:\Users\SRK\Desktop\HEX\motorctrl.obj (MOTORCTRL)
+
+
+LINK MAP OF MODULE:  C:\Users\SRK\Desktop\HEX\mot (MOTORCTRL)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     00D5H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  C:\Users\SRK\Desktop\HEX\mot (MOTORCTRL)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MOTORCTRL
+  B:0080H.0       SYMBOL        DC1
+  B:0080H.1       SYMBOL        DC2
+  C:00D0H         SYMBOL        DELAY
+  C:00C3H         SYMBOL        DELAY1
+  C:0007H         SYMBOL        K1
+  C:0010H         SYMBOL        K2
+  C:0019H         SYMBOL        K3
+  C:0000H         SYMBOL        MAIN
+  C:004DH         SYMBOL        NK
+  C:00BAH         SYMBOL        NK1
+  C:0082H         SYMBOL        NK2
+  D:0080H         SYMBOL        P0
+  D:0090H         SYMBOL        P1
+  C:00C9H         SYMBOL        Q1
+  C:00D2H         SYMBOL        Q10
+  C:00C7H         SYMBOL        Q2
+  C:00C5H         SYMBOL        Q3
+  C:002CH         SYMBOL        X0
+  C:0035H         SYMBOL        X1
+  C:004AH         SYMBOL        X10
+  C:007FH         SYMBOL        X11
+  C:00BDH         SYMBOL        X12
+  C:00C0H         SYMBOL        X13
+  C:0038H         SYMBOL        X2
+  C:0041H         SYMBOL        X3
+  C:0044H         SYMBOL        X4
+  C:0050H         SYMBOL        X5
+  C:0022H         SYMBOL        X6
+  C:0069H         SYMBOL        X7
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/11/2017  17:16:52  PAGE 2
+
+
+  C:0085H         SYMBOL        X8
+  C:00A1H         SYMBOL        X9
+  C:0000H         LINE#         7
+  C:0002H         LINE#         8
+  C:0005H         LINE#         9
+  C:0007H         LINE#         10
+  C:000AH         LINE#         11
+  C:000CH         LINE#         12
+  C:000EH         LINE#         13
+  C:0010H         LINE#         17
+  C:0013H         LINE#         18
+  C:0015H         LINE#         19
+  C:0017H         LINE#         20
+  C:0019H         LINE#         26
+  C:001CH         LINE#         27
+  C:001EH         LINE#         28
+  C:0020H         LINE#         29
+  C:0022H         LINE#         38
+  C:0025H         LINE#         39
+  C:0027H         LINE#         40
+  C:0029H         LINE#         41
+  C:002CH         LINE#         42
+  C:002EH         LINE#         43
+  C:0030H         LINE#         44
+  C:0033H         LINE#         45
+  C:0035H         LINE#         46
+  C:0038H         LINE#         47
+  C:003AH         LINE#         48
+  C:003CH         LINE#         49
+  C:003FH         LINE#         50
+  C:0041H         LINE#         51
+  C:0044H         LINE#         52
+  C:0046H         LINE#         53
+  C:0048H         LINE#         54
+  C:004AH         LINE#         55
+  C:004DH         LINE#         56
+  C:0050H         LINE#         57
+  C:0052H         LINE#         58
+  C:0054H         LINE#         59
+  C:0056H         LINE#         60
+  C:0058H         LINE#         61
+  C:005AH         LINE#         62
+  C:005CH         LINE#         63
+  C:005EH         LINE#         64
+  C:0061H         LINE#         65
+  C:0064H         LINE#         66
+  C:0067H         LINE#         67
+  C:0069H         LINE#         68
+  C:006BH         LINE#         69
+  C:006DH         LINE#         70
+  C:006FH         LINE#         71
+  C:0071H         LINE#         72
+  C:0073H         LINE#         73
+  C:0075H         LINE#         74
+  C:0077H         LINE#         75
+  C:007AH         LINE#         76
+  C:007DH         LINE#         77
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/11/2017  17:16:52  PAGE 3
+
+
+  C:007FH         LINE#         78
+  C:0082H         LINE#         79
+  C:0085H         LINE#         80
+  C:0087H         LINE#         81
+  C:0089H         LINE#         82
+  C:008BH         LINE#         83
+  C:008DH         LINE#         84
+  C:008FH         LINE#         85
+  C:0091H         LINE#         86
+  C:0093H         LINE#         87
+  C:0096H         LINE#         88
+  C:0099H         LINE#         89
+  C:009CH         LINE#         90
+  C:009FH         LINE#         91
+  C:00A1H         LINE#         92
+  C:00A3H         LINE#         93
+  C:00A5H         LINE#         94
+  C:00A7H         LINE#         95
+  C:00A9H         LINE#         96
+  C:00ABH         LINE#         97
+  C:00ADH         LINE#         98
+  C:00AFH         LINE#         99
+  C:00B2H         LINE#         100
+  C:00B5H         LINE#         101
+  C:00B8H         LINE#         102
+  C:00BAH         LINE#         103
+  C:00BDH         LINE#         104
+  C:00C0H         LINE#         105
+  C:00C3H         LINE#         106
+  C:00C5H         LINE#         107
+  C:00C7H         LINE#         108
+  C:00C9H         LINE#         109
+  C:00CBH         LINE#         110
+  C:00CDH         LINE#         111
+  C:00CFH         LINE#         112
+  C:00D0H         LINE#         113
+  C:00D2H         LINE#         114
+  C:00D4H         LINE#         115
+  -------         ENDMOD        MOTORCTRL
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00D5H BYTE (10%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=213
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

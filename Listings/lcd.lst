@@ -1,0 +1,75 @@
+A51 MACRO ASSEMBLER  LCD                                                                  06/04/2017 19:01:18 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\lcd.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE lcd.asm SET(SMALL) DEBUG PRINT(.\Listings\lcd.lst) OBJECT(C:\Users\SRK\
+                      Desktop\HEX\lcd.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                     ORG 00H
+0000 7438              2                     MOV A,#38H
+0002 112C              3                     ACALL CMD
+0004 1146              4                     ACALL DELAY
+0006 740E              5                     MOV A,#0EH
+0008 112C              6                     ACALL CMD
+000A 1146              7                     ACALL DELAY
+000C 7401              8                     MOV A,#01H
+000E 112C              9                     ACALL CMD
+0010 1146             10                     ACALL DELAY
+0012 7406             11                     MOV A,#06H
+0014 112C             12                     ACALL CMD
+0016 1146             13                     ACALL DELAY
+0018 7487             14                     MOV A,#87H
+001A 112C             15                     ACALL CMD
+001C 1146             16                     ACALL DELAY
+001E 744E             17                     MOV A,#"N"
+0020 1139             18                     ACALL DAT
+0022 1146             19                     ACALL DELAY
+0024 7449             20                     MOV A,#"I"
+0026 1139             21                     ACALL DAT
+0028 1146             22                     ACALL DELAY
+002A 80FE             23     X3:             SJMP X3
+002C F5A0             24     CMD:    MOV P2,A
+002E C280             25                     CLR P0.0
+0030 C281             26                     CLR P0.1
+0032 D282             27                     SETB P0.2
+0034 1146             28                     ACALL DELAY
+0036 C282             29                     CLR P0.2
+0038 22               30                     RET
+0039 F5A0             31     DAT:    MOV P2,A
+003B D280             32                     SETB P0.0
+003D C281             33                     CLR P0.1
+003F D282             34                     SETB P0.2
+0041 1146             35                     ACALL DELAY
+0043 C282             36                     CLR P0.2
+0045 22               37                     RET
+0046 78C8             38     DELAY:  MOV R0,#200
+0048 79C8             39             X1:     MOV R1,#200
+004A D9FE             40             X2:     DJNZ R1,X2
+004C D8FA             41                     DJNZ R0,X1
+004E 22               42                     RET
+                      43                     END
+A51 MACRO ASSEMBLER  LCD                                                                  06/04/2017 19:01:18 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+CMD. . . . . . . .  C ADDR   002CH   A   
+DAT. . . . . . . .  C ADDR   0039H   A   
+DELAY. . . . . . .  C ADDR   0046H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+X1 . . . . . . . .  C ADDR   0048H   A   
+X2 . . . . . . . .  C ADDR   004AH   A   
+X3 . . . . . . . .  C ADDR   002AH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

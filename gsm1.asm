@@ -1,0 +1,78 @@
+			ORG		00H
+			SJMP	X5
+			ORG		0023H
+			MOV		A,SBUF
+			MOV		@R1,A
+			INC		R1
+			CLR		RI
+			INC		R3
+			RETI
+			
+X5:			MOV		R1,#30H
+			MOV		R3,#00H
+			MOV		DPTR,#COMMAND
+			CLR 	A
+Q1:			MOVC	A,@A+DPTR
+			JZ		X1
+			ACALL	CMD
+			INC		DPTR
+			CLR		A
+			SJMP	Q1
+X1:			MOV 	TMOD,#20H
+			MOV 	TH1,#-3
+			SETB 	TR1
+			MOV 	SCON,#50H
+			MOV		DPTR,#GSM_CMD
+			CLR		A
+Q2:			MOVC	A,@A+DPTR
+			JZ		X4
+			MOV		SBUF,A
+			ACALL 	X2
+			INC		DPTR
+			CLR		A
+			SJMP 	Q2
+			
+X4:			MOV		IE,#10010000B
+X7:			CJNE	R3,#09 H,X6
+			MOV		IE,#00H
+			MOV		R1,#30H
+X8:			MOV		A,@R1
+			JZ		X9
+			ACALL	DAT
+			INC		R1
+			DJNZ	R3,X8
+			SJMP	$
+X6:			CLR		A
+			SJMP	X7
+X9:			SJMP 	$
+	
+	
+CMD: 		MOV 	P2,A
+			CLR 	P0.0
+			CLR 	P0.1
+			SETB 	P0.2
+			ACALL 	DELAY
+			CLR		P0.2
+			RET
+DAT:		MOV 	P2,A
+			SETB 	P0.0
+			CLR 	P0.1
+			SETB 	P0.2
+			ACALL 	DELAY
+			CLR 	P0.2
+			RET
+			
+DELAY: 		MOV 	R0,#20
+Z1:			MOV 	R2,#200
+Z2:			DJNZ 	R2,Z2
+			DJNZ 	R0,Z1
+			RET
+			
+X2:			JNB		TI,X2
+			CLR		TI
+			RET
+			
+			ORG		250H
+COMMAND:	DB  	38H,0EH,80H,01H,06H,0
+GSM_CMD:	DB		"AT",0DH,0
+			END

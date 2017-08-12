@@ -1,0 +1,96 @@
+A51 MACRO ASSEMBLER  LCD_DPTR                                                             06/13/2017 18:02:22 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\lcd_dptr.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE lcd_dptr.asm SET(SMALL) DEBUG PRINT(.\Listings\lcd_dptr.lst) OBJECT(C:\
+                      Users\SRK\Desktop\lcd_dptr.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                     ORG 00H
+0000 7438              2                     MOV A,#38H
+0002 1136              3                     ACALL CMD
+0004 1155              4                     ACALL DELAY
+0006 740E              5                     MOV A,#0EH
+0008 1136              6                     ACALL CMD
+000A 1155              7                     ACALL DELAY
+000C 7401              8                     MOV A,#01H
+000E 1136              9                     ACALL CMD
+0010 1155             10                     ACALL DELAY
+0012 7406             11                     MOV A,#06H
+0014 1136             12                     ACALL CMD
+0016 1155             13                     ACALL DELAY
+0018 7480             14                     MOV A,#80H
+001A 1136             15                     ACALL CMD
+001C 1155             16                     ACALL DELAY
+001E 900250           17                     MOV DPTR,#DAT1
+0021 7A0B             18                     MOV R2,#11
+0023 1143             19                     ACALL DAT2
+0025 1155             20                     ACALL DELAY
+0027 74C0             21                     MOV A,#0C0H
+0029 1136             22                     ACALL CMD
+002B 1155             23                     ACALL DELAY
+002D 90025B           24                     MOV DPTR,#DAT3
+0030 7A0D             25                     MOV R2,#13
+0032 1143             26                     ACALL DAT2
+0034 80FE             27                     Q1:SJMP Q1
+0036 F5A0             28     CMD:    MOV P2,A
+0038 C280             29                     CLR P0.0
+003A C281             30                     CLR P0.1
+003C D282             31                     SETB P0.2
+003E 1155             32                     ACALL DELAY
+0040 C282             33                     CLR P0.2
+0042 22               34                     RET
+0043 E4               35     DAT2:   CLR A
+0044 93               36                     MOVC A,@A+DPTR
+0045 F5A0             37     DAT:    MOV P2,A
+0047 A3               38                     INC DPTR
+0048 D280             39                     SETB P0.0
+004A C281             40                     CLR P0.1
+004C D282             41                     SETB P0.2
+004E 1155             42                     ACALL DELAY
+0050 C282             43                     CLR P0.2
+0052 DAEF             44                     DJNZ R2,DAT2
+0054 22               45                     RET
+0055 78C8             46     DELAY:  MOV R0,#200
+0057 79C8             47             X1:     MOV R1,#200
+0059 D9FE             48             X2:     DJNZ R1,X2
+005B D8FA             49                     DJNZ R0,X1
+005D 22               50                     RET
+0250                  51                     ORG 250H
+0250 4D442053         52     DAT1:   DB "MD SHAHRUKH"
+0254 48414852                
+0258 554B48                  
+025B 4E492049         53     DAT3:   DB "NI INNOVATION"
+025F 4E4E4F56                
+0263 4154494F                
+A51 MACRO ASSEMBLER  LCD_DPTR                                                             06/13/2017 18:02:22 PAGE     2
+
+0267 4E                      
+                      54                     END
+A51 MACRO ASSEMBLER  LCD_DPTR                                                             06/13/2017 18:02:22 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+CMD. . . . . . . .  C ADDR   0036H   A   
+DAT. . . . . . . .  C ADDR   0045H   A   
+DAT1 . . . . . . .  C ADDR   0250H   A   
+DAT2 . . . . . . .  C ADDR   0043H   A   
+DAT3 . . . . . . .  C ADDR   025BH   A   
+DELAY. . . . . . .  C ADDR   0055H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+Q1 . . . . . . . .  C ADDR   0034H   A   
+X1 . . . . . . . .  C ADDR   0057H   A   
+X2 . . . . . . . .  C ADDR   0059H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

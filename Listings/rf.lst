@@ -1,0 +1,75 @@
+A51 MACRO ASSEMBLER  RF                                                                   07/22/2017 14:12:46 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\rf.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE rf.asm SET(SMALL) DEBUG PRINT(.\Listings\rf.lst) OBJECT(C:\Users\SRK\De
+                      sktop\HEX\rf.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                     ORG             00H
+0000 75B0FF            2                     MOV             P3,#0FFH
+0003 E4                3     X6:             CLR             A
+0004 E590              4                     MOV             A,P1
+0006 B4FE0A            5                     CJNE    A,#11111110B,X1
+0009 1139              6                     ACALL   MOTOR1
+000B E4                7                     CLR             A
+000C E590              8     Q1:             MOV             A,P1
+000E B4FFFB            9                     CJNE    A,#0FFH,Q1
+0011 80F0             10                     SJMP    X6
+0013 B4FD0A           11     X1:             CJNE    A,#11111101B,X2
+0016 113D             12                     ACALL   MOTOR2
+0018 E4               13                     CLR             A
+0019 E590             14     Q2:             MOV             A,P1
+001B B4FFFB           15                     CJNE    A,#0FFH,Q2
+001E 80E3             16                     SJMP    X6
+0020 B4FB0A           17     X2:             CJNE    A,#11111011B,X3
+0023 1141             18                     ACALL   MOTOR3
+0025 E4               19                     CLR             A
+0026 E590             20     Q3:             MOV             A,P1
+0028 B4FFFB           21                     CJNE    A,#0FFH,Q3
+002B 80D6             22                     SJMP    X6
+002D B4F7D3           23     X3:             CJNE    A,#11110111B,X6
+0030 1145             24                     ACALL   RELAY
+0032 E590             25     Q4:             MOV             A,P1
+0034 B4FFFB           26                     CJNE    A,#0FFH,Q4
+0037 80CA             27                     SJMP    X6
+                      28                     
+0039 75B0FE           29     MOTOR1: MOV             P3,#11111110B
+003C 22               30                     RET
+003D 75B0FD           31     MOTOR2: MOV             P3,#11111101B
+0040 22               32                     RET
+0041 75B0FC           33     MOTOR3: MOV             P3,#11111100B
+0044 22               34                     RET
+0045 B2B2             35     RELAY:  CPL             P3.2
+0047 22               36                     RET
+                      37                     END
+A51 MACRO ASSEMBLER  RF                                                                   07/22/2017 14:12:46 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+MOTOR1 . . . . . .  C ADDR   0039H   A   
+MOTOR2 . . . . . .  C ADDR   003DH   A   
+MOTOR3 . . . . . .  C ADDR   0041H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+Q1 . . . . . . . .  C ADDR   000CH   A   
+Q2 . . . . . . . .  C ADDR   0019H   A   
+Q3 . . . . . . . .  C ADDR   0026H   A   
+Q4 . . . . . . . .  C ADDR   0032H   A   
+RELAY. . . . . . .  C ADDR   0045H   A   
+X1 . . . . . . . .  C ADDR   0013H   A   
+X2 . . . . . . . .  C ADDR   0020H   A   
+X3 . . . . . . . .  C ADDR   002DH   A   
+X6 . . . . . . . .  C ADDR   0003H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

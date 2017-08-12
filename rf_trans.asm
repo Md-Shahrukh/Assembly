@@ -1,0 +1,42 @@
+					ORG		00H
+						
+X1:					CLR		A
+					MOV		A,P1
+					CJNE	A,#11111110B,X2
+					ACALL 	MOTOR1
+					SJMP	X1
+X2:					CJNE	A,#11111101B,X3
+					ACALL 	MOTOR2
+					SJMP	X1
+X3:					CJNE	A,#11111011B,X4
+					ACALL 	MOTOR3
+					SJMP	X1
+X4:					CJNE	A,#11110111B,X1
+					ACALL 	RELAY
+					SJMP	X1
+
+MOTOR1:				MOV		P3,#11111110B
+					CLR		A
+Q1:					MOV		A,P1
+					CJNE	A,#0FFH,Q1
+					MOV		P3,#0FFH
+					RET
+MOTOR2:				MOV		P3,#11111101B
+					CLR		A
+Q2:					MOV		A,P1
+					CJNE	A,#0FFH,Q2
+					MOV		P3,#0FFH
+					RET	
+MOTOR3:				MOV		P3,#11111011B
+					CLR		A
+Q3:					MOV		A,P1
+					CJNE	A,#0FFH,Q3
+					MOV		P3,#0FFH
+					RET
+RELAY:				MOV		P3,#11110111B
+					CLR		A
+Q4:					MOV		A,P1
+					CJNE	A,#0FFH,Q4
+					MOV		P3,#0FFH
+					RET
+					END 

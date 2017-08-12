@@ -1,0 +1,112 @@
+			ORG 	00H
+			LJMP	MAIN
+			
+			ORG 	003H
+			MOV		A,30H
+			CJNE	A,#10H,Z1
+			ACALL 	Q2
+			RETI
+Z1:			ACALL	LEVEL1
+			RETI
+			
+			ORG		0013H
+			ACALL	W1
+			RETI
+Z2:			ACALL 	LEVEL2
+			RETI
+			
+			ORG		001BH
+			DJNZ	R2,LEVEL3
+			MOV		30H,#30H
+			MOV		R2,#28
+			MOV		TH1,#00H
+			MOV 	TL1,#00H
+			CLR		TR1
+LEVEL3:		RETI
+			
+			ORG		100H
+				
+MAIN:		MOV		R2,#28
+			MOV 	R3,#30H
+			MOV 	IE,#10001101B
+			MOV		TCON,#00000101B
+			MOV 	A,#38H
+			ACALL 	CMD
+			ACALL 	DELAY
+			MOV 	A,#0EH
+			ACALL 	CMD
+			ACALL 	DELAY
+			MOV 	A,#01H
+			ACALL 	CMD
+			ACALL 	DELAY
+			MOV 	A,#06H
+			ACALL 	CMD
+			ACALL 	DELAY
+			MOV 	A,#80H
+			ACALL 	CMD
+			ACALL 	DELAY
+			
+			
+DC:			SJMP 	DC
+
+Q1:			MOV		30H,#00H
+			CLR 	TR1
+			INC		R3
+			MOV		A,R3
+			MOV		P2,A
+			SETB 	P0.0
+			CLR 	P0.1
+			SETB 	P0.2
+			ACALL 	DELAY
+			CLR 	P0.2
+			RET
+
+Q2:			MOV		30H,#00H
+			CLR		TR1
+			DEC		R3
+			MOV		A,R3
+			MOV		P2,A
+			SETB 	P0.0
+			CLR 	P0.1
+			SETB 	P0.2
+			ACALL 	DELAY
+			CLR 	P0.2
+			RET
+			
+			
+CMD: 		MOV 	P2,A
+			CLR 	P0.0
+			CLR 	P0.1
+			SETB 	P0.2
+			ACALL 	DELAY
+			CLR 	P0.2
+			RET
+
+W1:			MOV		A,30H
+			CJNE	A,#20H,W2
+			ACALL	Q1
+			RET
+W2:			LJMP Z2
+LEVEL1:		MOV		30H,#20H
+			MOV		TMOD,#10H
+			MOV 	TH1,#00H
+			MOV 	TL1,#00H
+			SETB 	TR1
+			RET
+
+LEVEL2:		MOV		30H,#10H
+			MOV		TMOD,#10H
+			MOV 	TH1,#00H
+			MOV 	TL1,#00H
+			SETB 	TR1
+			RET
+			
+
+			
+DELAY: 		MOV 	R0,#200
+X1:			MOV 	R1,#200
+X2:			DJNZ 	R1,X2
+			DJNZ 	R0,X1
+			RET
+			
+			END

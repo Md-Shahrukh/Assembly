@@ -1,0 +1,41 @@
+			org 00h
+		L3: MOV R0,#00
+			MOV R1,#00
+			MOV R2,#00
+			MOV R3,#00
+		L4: INC R0
+			CJNE R0,#10,L1
+			MOV R0,#00
+			INC R1
+			CJNE R1,#6,L1
+			MOV R1,#00
+			CJNE R3,#00,L2
+			INC R2
+			CJNE R2,#10,L1
+			MOV R2,#00
+			INC R3
+			SJMP L4
+		L2: INC R2
+			CJNE R2,#03,L1
+			MOV R2,#10
+			MOV R2,#00
+			SJMP L3
+		L1: MOV A,R1
+			SWAP A
+			ADD A,R0
+			MOV P1,A
+			MOV A,R3
+			SWAP A
+			ADD A,R2
+			MOV P2,A
+			ACALL DELAY
+			SJMP L4
+	DELAY:  MOV R4,#6
+		X1: MOV R5,#200
+		X2: MOV R6,#200
+ 		X3:	DJNZ R6,X3
+			DJNZ R5,X2
+			DJNZ R4,X1
+			RET
+			
+			END

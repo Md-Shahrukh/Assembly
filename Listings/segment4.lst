@@ -1,0 +1,72 @@
+A51 MACRO ASSEMBLER  SEGMENT4                                                             06/05/2017 13:03:42 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\segment4.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE segment4.asm SET(SMALL) DEBUG PRINT(.\Listings\segment4.lst) OBJECT(C:\
+                      Users\SRK\Desktop\HEX\segment4.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                     ORG 00H
+0000 7530C0            2                     MOV 30H,#11000000B
+0003 7531F9            3                     MOV 31H,#11111001B
+0006 7532A4            4                     MOV 32H,#10100100B
+0009 7533B0            5                     MOV 33H,#10110000B
+000C 753499            6                     MOV 34H,#10011001B
+000F 753592            7                     MOV 35H,#10010010B
+0012 753682            8                     MOV 36H,#10000010B
+0015 7537F8            9                     MOV 37H,#11111000B
+0018 753880           10                     MOV 38H,#10000000B
+001B 753990           11                     MOV 39H,#10010000B
+001E 7930             12     X3:             MOV R1,#30H
+                      13                     
+0020 7830             14     X2:             MOV R0,#30H
+0022 7C0F             15     X4:             MOV R4,#15
+0024 75B0FE           16     X1:             MOV P3,#11111110B
+0027 E6               17                     MOV A,@R0
+0028 F590             18                     MOV P1,A
+002A 1144             19                     ACALL DELAY
+002C 75B0FD           20                     MOV P3,#11111101B
+002F E7               21                     MOV A,@R1
+0030 F590             22                     MOV P1,A
+0032 1144             23                     ACALL DELAY
+0034 DCEE             24                     DJNZ R4,X1
+0036 08               25                     INC R0
+0037 B83AE8           26                     CJNE R0,#3AH,X4
+                      27                     
+003A 09               28                     INC R1
+003B B93AE2           29                     CJNE R1,#3AH,X2
+003E 1144             30                     ACALL DELAY
+0040 1144             31                     ACALL DELAY
+0042 80DA             32                     SJMP X3
+0044 7A64             33     DELAY:  MOV R2,#100
+0046 7B32             34     Q1:             MOV R3,#50
+0048 DBFE             35     Q2:             DJNZ R3,Q2
+004A DAFA             36                     DJNZ R2,Q1
+004C 22               37                     RET
+                      38                     END
+                                             
+A51 MACRO ASSEMBLER  SEGMENT4                                                             06/05/2017 13:03:42 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   0044H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+Q1 . . . . . . . .  C ADDR   0046H   A   
+Q2 . . . . . . . .  C ADDR   0048H   A   
+X1 . . . . . . . .  C ADDR   0024H   A   
+X2 . . . . . . . .  C ADDR   0020H   A   
+X3 . . . . . . . .  C ADDR   001EH   A   
+X4 . . . . . . . .  C ADDR   0022H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

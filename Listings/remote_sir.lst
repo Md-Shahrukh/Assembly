@@ -1,0 +1,435 @@
+A51 MACRO ASSEMBLER  REMOTE_SIR                                                           07/13/2017 13:26:44 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\remote_sir.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE remote_sir.asm SET(SMALL) DEBUG PRINT(.\Listings\remote_sir.lst) OBJECT
+                      (C:\Users\SRK\Desktop\HEX\remote_sir.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;--------------------------------Remote control based device control-----------------------
+                             ------------------------------;
+                       2     ;----LCD_DATA-P2, LCD_EN-P0.0, LCD_CMD-P0.1, DEVICE-P0.4 for kye-1, DEVICE-P0.5 for key-2, 
+                             DEVICE-P0.6 for key-3, DEVICE-P0.7 for key-4---------;
+                       3     ;;;----------------------------------------------------------------------------------------
+                             -----------------------------------------------------;
+                       4                     
+  00B2                 5     sensor          equ             p3.2    
+                       6     
+0000                   7                             org     0000h
+0000 020030            8                             ljmp    amain
+0003                   9                             org     03h             
+0003 02003D           10                             ljmp    sensor_int                      
+                      11             
+0030                  12                             ORG             30H
+                      13     
+0030 3133             14     AMAIN:          ACALL           LCDCOMMAND
+0032 11FB             15                             ACALL           LCDDATA                         ;WEL COME
+0034 3141             16                             ACALL           LCDCOMMAND1
+0036 3109             17                             ACALL           LCDDATA1
+0038 75A881           18                             MOV                     IE,#10000001B   
+003B 80FE             19                             SJMP            $
+                      20     
+                      21     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                             ;;;;
+                      22     ;==========================================================================================
+                             ====
+003D C2AF             23     sensor_int:     clr             ie.7                    ;disable all interrupts
+003F E4               24                             clr             a               
+0040 12006C           25                             lcall           remote_get              ;data is like 0=ff,1=feh
+0043 44F0             26                             orl             a,#0f0h                 ;make the MSB as 1111
+0045 F4               27                             cpl             a                               ;to get data like 0
+                             =00h,1=01h,2=02h
+0046 B40108           28                             cjne            a,#01h,LEVEL5           
+0049 B284             29                             CPL                     P0.4
+004B 3133             30                             ACALL           LCDCOMMAND
+004D 3117             31                             ACALL           LCDDATA2
+                      32                     
+004F 803F             33                             SJMP            reset_dat       
+                      34     
+0051 B40208           35     LEVEL5:         CJNE            A,#02H,LEVEL6
+0054 B285             36                             CPL                     P0.5
+0056 3133             37                             ACALL           LCDCOMMAND
+0058 3125             38                             ACALL           LCDDATA3
+005A 8034             39                             SJMP            RESET_DAT
+005C B40304           40     LEVEL6:         CJNE            A,#03H,LEVEL7
+005F B286             41                             CPL                     P0.6
+                      42                             ;ACALL          DELAY
+0061 802D             43                             SJMP            RESET_DAT
+                      44     
+0063 B40404           45     LEVEL7:         CJNE            A,#04H,LEVEL8
+0066 B287             46                             CPL                     P0.7
+                      47                             ;ACALL          DELAY
+0068 8026             48                             SJMP            RESET_DAT
+                      49     
+006A 8024             50     LEVEL8:         SJMP            RESET_DAT
+                      51     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+A51 MACRO ASSEMBLER  REMOTE_SIR                                                           07/13/2017 13:26:44 PAGE     2
+
+                             ;;;;;;;;;;;
+                      52     ;==========================================================================================
+                             ===========
+                      53     
+                      54     
+006C 120096           55     remote_get:     lcall           delay_3bit                      ;give a 1 bit delay to chec
+                             k AGC 2-bit
+006F 30B246           56                     jnb             sensor,next_tx                  ;if AGC=00 then incorrect, 
+                             exit 
+                      57                                                                     ;if AGC=01 then correct
+                      58                                             
+0072 1200BE           59                     lcall           delay_1bit                      ;address bits Rx:flip bit +
+                              5 address bits
+                      60                     
+                      61                             
+0075 7F06             62                     mov             r7,#06h                         ;flip bit + addr bits = 1+5
+                             =6 bits
+0077 A2B2             63     remote_addr:    mov             c,sensor
+0079 33               64                     rlc             a
+007A 1200BE           65                     lcall           delay_1bit
+007D DFF8             66                     djnz            r7,remote_addr
+007F 541F             67                     anl             a,#00011111b                    ;mask the flip bit
+0081 B40034           68                     cjne            a,#00h,next_tx                  ;if the address is not 00, 
+                             then exit
+                      69     
+                      70                                                                     ;command bits reception    
+                                                          
+0084 7F06             71                     mov             r7,#06h                         ;no. of cmd bits=6
+0086 E4               72                     clr             a
+                      73                     
+0087 A2B2             74     remote_cmd:     mov             c,sensor
+0089 33               75                     rlc             a
+008A 1200BE           76                     lcall           delay_1bit
+008D DFF8             77                     djnz            r7,remote_cmd
+008F 22               78                     ret
+                      79     
+                      80     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                             ;;;;;;;;;;;;
+                      81     ;==========================================================================================
+                             ============
+                      82     
+0090                  83     reset_dat:              
+                      84     
+0090 1200EE           85     exit_int0:      lcall           retransmit                      ;to avoid retransmission   
+                                          
+0093 D2AF             86                     setb            ie.7            
+0095 32               87                     reti
+                      88     ;=;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                             ;;;;;;;;;;;
+                      89     
+                      90     ;       Delay of 3/4 of bit cycle:
+                      91     ;       1.728ms *3/4 = 1.296ms
+                      92     ;---------------------------------------------------------------------------
+0096 7D33             93     delay_3bit:     mov             r5,#51                  ;56
+0098 7E0A             94     s_loop3:        mov             r6,#10
+009A DEFE             95                     djnz            r6,$
+009C DDFA             96                     djnz            r5,s_loop3
+009E 00               97                     NOP
+009F 00               98                     NOP
+00A0 00               99                     NOP
+00A1 00              100                     NOP
+00A2 00              101                     NOP
+00A3 00              102                     NOP
+00A4 00              103                     NOP
+00A5 00              104                     NOP
+00A6 00              105                     NOP
+A51 MACRO ASSEMBLER  REMOTE_SIR                                                           07/13/2017 13:26:44 PAGE     3
+
+00A7 00              106                     NOP
+00A8 00              107                     NOP
+00A9 00              108                     NOP
+00AA 00              109                     NOP
+00AB 00              110                     NOP
+00AC 00              111                     NOP
+00AD 00              112                     NOP
+00AE 00              113                     NOP
+00AF 00              114                     NOP
+00B0 00              115                     NOP     
+00B1 00              116                     NOP
+00B2 00              117                     NOP
+00B3 00              118                     NOP
+00B4 00              119                     NOP
+00B5 00              120                     NOP
+00B6 00              121                     NOP
+00B7 22              122                     ret
+                     123     ;==========================================================================================
+                             =============
+                     124     
+                     125     ;---------------------------------------------------------------------------
+00B8 1200D2          126     next_tx:        lcall           delay_15bit                     ;if error then wait for 15 
+                             bit time
+00BB D2AF            127                     setb            ie.7                            ;enable interrupts
+00BD 22              128                     ret
+                     129     
+                     130     ;==========================================================================================
+                             ===============
+                     131     
+                     132     
+                     133     ;---------------------------------------------------------------------------
+                     134     ;       Delay of 1 bit cycle: 1.728ms
+                     135     ;---------------------------------------------------------------------------
+00BE 7D45            136     delay_1bit:     mov             r5,#69          ;75
+00C0 7E0A            137     s_loop2:        mov             r6,#10
+00C2 DEFE            138                     djnz            r6,$
+00C4 DDFA            139                     djnz            r5,s_loop2
+00C6 00              140                     NOP
+00C7 00              141                     NOP
+00C8 00              142                     NOP
+00C9 00              143                     NOP
+00CA 00              144                     NOP
+00CB 00              145                     NOP
+00CC 00              146                     NOP
+00CD 00              147                     NOP
+00CE 00              148                     NOP
+00CF 00              149                     NOP
+00D0 00              150                     NOP
+                     151     
+00D1 22              152                     ret
+                     153     
+                     154     ;============================================================================
+                     155     ;       Delay of 15 bit cycles:
+                     156     ;       1.728ms * 15 = 25.92ms
+                     157     ;---------------------------------------------------------------------------
+00D2 7DCC            158     delay_15bit:    mov             r5,#204         ;221,206
+00D4 7E39            159     s_loop1:        mov             r6,#57
+00D6 DEFE            160                     djnz            r6,$
+00D8 DDFA            161                     djnz            r5,s_loop1
+00DA 00              162                     NOP
+00DB 00              163                     NOP
+00DC 00              164                     NOP
+00DD 00              165                     NOP
+00DE 00              166                     NOP
+00DF 00              167                     NOP
+00E0 00              168                     NOP
+A51 MACRO ASSEMBLER  REMOTE_SIR                                                           07/13/2017 13:26:44 PAGE     4
+
+00E1 00              169                     NOP
+00E2 00              170                     NOP
+00E3 00              171                     NOP
+00E4 00              172                     NOP
+00E5 00              173                     NOP
+00E6 00              174                     NOP
+00E7 00              175                     NOP
+00E8 00              176                     NOP
+00E9 00              177                     NOP
+00EA 00              178                     NOP
+00EB 00              179                     NOP
+00EC 00              180                     NOP
+00ED 22              181                     ret
+                     182     ;============================================================================
+                     183     
+                     184     ;---------------------------------------------------------------------------
+                     185     ;       Delay of 130ms between retransmission
+                     186     ;---------------------------------------------------------------------------
+00EE 7DE9            187     retransmit:     mov             r5,#0E9H                        ;0FFH
+00F0 7EFF            188     s_loop4:        mov             r6,#0ffh
+00F2 7C02            189     s_loop5:        mov             r4,#02h
+00F4 DCFE            190                     djnz            r4,$
+00F6 DEFA            191                     djnz            r6,s_loop5
+00F8 DDF6            192                     djnz            r5,s_loop4
+00FA 22              193                     ret
+                     194     ;===========================================================================
+                     195     
+                     196     
+00FB E4              197     LCDDATA:        CLR             A
+00FC 90017B          198                     MOV             DPTR,#LCDDAT
+00FF 93              199     LEVEL4:         MOVC            A,@A+DPTR
+0100 6006            200                     JZ              LEVEL3
+0102 315C            201                     ACALL           DATA1
+0104 A3              202                     INC             DPTR
+0105 E4              203                     CLR             A
+0106 80F7            204                     SJMP            LEVEL4
+0108 22              205     LEVEL3:         RET
+                     206     
+                     207     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                     208     ;==============================================================================
+0109 E4              209     LCDDATA1:       CLR             A
+010A 90018C          210                     MOV             DPTR,#LCDDAT1
+010D 93              211     LEVEL10:        MOVC            A,@A+DPTR
+010E 6006            212                     JZ              LEVEL9
+0110 315C            213                     ACALL           DATA1
+0112 A3              214                     INC             DPTR
+0113 E4              215                     CLR             A
+0114 80F7            216                     SJMP            LEVEL10
+0116 22              217     LEVEL9:         RET     
+                     218     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                     219     ;==============================================================================
+0117 E4              220     LCDDATA2:       CLR             A
+0118 90019A          221                     MOV             DPTR,#LCDDAT2
+011B 93              222     LEVEL14:        MOVC            A,@A+DPTR
+011C 6006            223                     JZ              LEVEL13
+011E 315C            224                     ACALL           DATA1
+0120 A3              225                     INC             DPTR
+0121 E4              226                     CLR             A
+0122 80F7            227                     SJMP            LEVEL14
+0124 22              228     LEVEL13:        RET     
+                     229     
+                     230     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                     231     ;==============================================================================
+0125 E4              232     LCDDATA3:       CLR             A
+0126 9001AB          233                     MOV             DPTR,#LCDDAT3
+0129 93              234     LEVEL16:        MOVC            A,@A+DPTR
+A51 MACRO ASSEMBLER  REMOTE_SIR                                                           07/13/2017 13:26:44 PAGE     5
+
+012A 6006            235                     JZ              LEVEL15
+012C 315C            236                     ACALL           DATA1
+012E A3              237                     INC             DPTR
+012F E4              238                     CLR             A
+0130 80F7            239                     SJMP            LEVEL16
+0132 22              240     LEVEL15:        RET     
+                     241     
+                     242     
+                     243     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                     244     ;===============================================================================
+0133 E4              245     LCDCOMMAND:     CLR             A
+0134 900172          246                     MOV             DPTR,#LCDCOMM
+0137 93              247     LEVEL2:         MOVC            A,@A+DPTR
+0138 6006            248                     JZ              LEVEL1
+013A 314F            249                     ACALL           COMM
+013C A3              250                     INC             DPTR
+013D E4              251                     CLR             A
+013E 80F7            252                     SJMP            LEVEL2
+0140 22              253     LEVEL1:         RET
+                     254     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                     255     ;===============================================================================
+0141 E4              256     LCDCOMMAND1:    CLR             A
+0142 900178          257                     MOV             DPTR,#LCDCOMM1
+0145 93              258     LEVEL12:        MOVC            A,@A+DPTR
+0146 6006            259                     JZ              LEVEL11
+0148 314F            260                     ACALL           COMM
+014A A3              261                     INC             DPTR
+014B E4              262                     CLR             A
+014C 80F7            263                     SJMP            LEVEL12
+014E 22              264     LEVEL11:        RET
+                     265             
+                     266     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                     267     ;=================================================================================
+014F F5A0            268     COMM:   MOV             P2,A
+0151 C280            269                     CLR             P0.0
+0153 C281            270                     CLR             P0.1
+0155 D282            271                     SETB    P0.2
+0157 3169            272                     ACALL   DELAY
+0159 C282            273                     CLR             P0.2
+015B 22              274                     RET
+                     275     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                     276     ;==================================================================================
+                     277     
+015C F5A0            278     DATA1:  MOV                     P2,A
+015E D280            279                     SETB            P0.0
+0160 C281            280                     CLR                     P0.1
+0162 D282            281                     SETB            P0.2
+0164 3169            282                     ACALL           DELAY
+0166 C282            283                     CLR                     P0.2
+0168 22              284                     RET     
+                     285     
+                     286     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                     287     ;==================================================================================
+                     288     
+                     289     
+0169 7AFF            290     DELAY:          MOV             R2,#255
+016B 7BFF            291     HERE1:          MOV             R3,#255
+016D DBFE            292     HERE:           DJNZ            R3,HERE 
+016F DAFA            293                     DJNZ            R2,HERE1
+0171 22              294                     RET             
+                     295     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                     296     ;==================================================================================
+                     297     
+0172 380E0106        298     LCDCOMM:        DB              38H,0EH,01H,06H,80H,0
+0176 8000                    
+0178 06C000          299     LCDCOMM1:       DB              06H,0C0H,0
+A51 MACRO ASSEMBLER  REMOTE_SIR                                                           07/13/2017 13:26:44 PAGE     6
+
+017B 20202020        300     LCDDAT  :       DB              "    WEL COME    ",0
+017F 57454C20                
+0183 434F4D45                
+0187 20202020                
+018B 00                      
+018C 4E492049        301     LCDDAT1:        DB              "NI Innovation",0
+0190 6E6E6F76                
+0194 6174696F                
+0198 6E00                    
+019A 44455649        302     LCDDAT2:        DB              "DEVICE-1 OPERATE",0
+019E 43452D31                
+01A2 204F5045                
+01A6 52415445                
+01AA 00                      
+01AB 44455649        303     LCDDAT3:        DB              "DEVICE-2 OPERATE",0
+01AF 43452D32                
+01B3 204F5045                
+01B7 52415445                
+01BB 00                      
+                     304             
+                     305     
+                     306                     END
+                             
+A51 MACRO ASSEMBLER  REMOTE_SIR                                                           07/13/2017 13:26:44 PAGE     7
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AMAIN. . . . . . .  C ADDR   0030H   A   
+COMM . . . . . . .  C ADDR   014FH   A   
+DATA1. . . . . . .  C ADDR   015CH   A   
+DELAY. . . . . . .  C ADDR   0169H   A   
+DELAY_15BIT. . . .  C ADDR   00D2H   A   
+DELAY_1BIT . . . .  C ADDR   00BEH   A   
+DELAY_3BIT . . . .  C ADDR   0096H   A   
+EXIT_INT0. . . . .  C ADDR   0090H   A   
+HERE . . . . . . .  C ADDR   016DH   A   
+HERE1. . . . . . .  C ADDR   016BH   A   
+IE . . . . . . . .  D ADDR   00A8H   A   
+LCDCOMM. . . . . .  C ADDR   0172H   A   
+LCDCOMM1 . . . . .  C ADDR   0178H   A   
+LCDCOMMAND . . . .  C ADDR   0133H   A   
+LCDCOMMAND1. . . .  C ADDR   0141H   A   
+LCDDAT . . . . . .  C ADDR   017BH   A   
+LCDDAT1. . . . . .  C ADDR   018CH   A   
+LCDDAT2. . . . . .  C ADDR   019AH   A   
+LCDDAT3. . . . . .  C ADDR   01ABH   A   
+LCDDATA. . . . . .  C ADDR   00FBH   A   
+LCDDATA1 . . . . .  C ADDR   0109H   A   
+LCDDATA2 . . . . .  C ADDR   0117H   A   
+LCDDATA3 . . . . .  C ADDR   0125H   A   
+LEVEL1 . . . . . .  C ADDR   0140H   A   
+LEVEL10. . . . . .  C ADDR   010DH   A   
+LEVEL11. . . . . .  C ADDR   014EH   A   
+LEVEL12. . . . . .  C ADDR   0145H   A   
+LEVEL13. . . . . .  C ADDR   0124H   A   
+LEVEL14. . . . . .  C ADDR   011BH   A   
+LEVEL15. . . . . .  C ADDR   0132H   A   
+LEVEL16. . . . . .  C ADDR   0129H   A   
+LEVEL2 . . . . . .  C ADDR   0137H   A   
+LEVEL3 . . . . . .  C ADDR   0108H   A   
+LEVEL4 . . . . . .  C ADDR   00FFH   A   
+LEVEL5 . . . . . .  C ADDR   0051H   A   
+LEVEL6 . . . . . .  C ADDR   005CH   A   
+LEVEL7 . . . . . .  C ADDR   0063H   A   
+LEVEL8 . . . . . .  C ADDR   006AH   A   
+LEVEL9 . . . . . .  C ADDR   0116H   A   
+NEXT_TX. . . . . .  C ADDR   00B8H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+REMOTE_ADDR. . . .  C ADDR   0077H   A   
+REMOTE_CMD . . . .  C ADDR   0087H   A   
+REMOTE_GET . . . .  C ADDR   006CH   A   
+RESET_DAT. . . . .  C ADDR   0090H   A   
+RETRANSMIT . . . .  C ADDR   00EEH   A   
+SENSOR . . . . . .  B ADDR   00B0H.2 A   
+SENSOR_INT . . . .  C ADDR   003DH   A   
+S_LOOP1. . . . . .  C ADDR   00D4H   A   
+S_LOOP2. . . . . .  C ADDR   00C0H   A   
+S_LOOP3. . . . . .  C ADDR   0098H   A   
+S_LOOP4. . . . . .  C ADDR   00F0H   A   
+S_LOOP5. . . . . .  C ADDR   00F2H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
+A51 MACRO ASSEMBLER  REMOTE_SIR                                                           07/13/2017 13:26:44 PAGE     8
+

@@ -1,0 +1,37 @@
+A51 MACRO ASSEMBLER  TEST2                                                                06/03/2017 17:37:43 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN .\Objects\test2.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE test2.asm SET(SMALL) DEBUG PRINT(.\Listings\test2.lst) OBJECT(.\Objects
+                      \test2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1             org 00h
+0000 B295              2      main:   CPL P1.5
+0002 1106              3                     Acall delay
+0004 80FA              4                     sjmp main
+                       5                     
+0006 C000              6     delay: push 00
+0008 00                7                     NOP
+0009 00                8                     NOP
+000A 22                9                     ret
+                      10                     end
+A51 MACRO ASSEMBLER  TEST2                                                                06/03/2017 17:37:43 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   0006H   A   
+MAIN . . . . . . .  C ADDR   0000H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

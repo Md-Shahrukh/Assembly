@@ -1,0 +1,104 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/14/2017  19:50:55  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE C:\Users\SRK\Desktop\HEX\rsp_2(rs).obj TO C:\Users\SRK\Desktop\HEX\LCD_COUNT PRINT (.\Listin
+>> gs\LCD_COUNT.m51) RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  C:\Users\SRK\Desktop\HEX\rsp_2(rs).obj (RSP_2_RS_)
+
+
+LINK MAP OF MODULE:  C:\Users\SRK\Desktop\HEX\LCD_COUNT (RSP_2_RS_)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     005BH     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  C:\Users\SRK\Desktop\HEX\LCD_COUNT (RSP_2_RS_)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        RSP_2_RS_
+  C:003FH         SYMBOL        CMD
+  C:004CH         SYMBOL        D1
+  C:0031H         SYMBOL        DAT
+  C:0052H         SYMBOL        DELAY
+  D:0080H         SYMBOL        P0
+  D:00A0H         SYMBOL        P2
+  C:0029H         SYMBOL        Q1
+  B:0098H.0       SYMBOL        RI
+  D:0099H         SYMBOL        SBUF
+  D:0098H         SYMBOL        SCON
+  D:008DH         SYMBOL        TH1
+  D:0089H         SYMBOL        TMOD
+  B:0088H.6       SYMBOL        TR1
+  C:0054H         SYMBOL        X1
+  C:0056H         SYMBOL        X2
+  C:0000H         LINE#         2
+  C:0002H         LINE#         3
+  C:0004H         LINE#         4
+  C:0006H         LINE#         5
+  C:0008H         LINE#         6
+  C:000AH         LINE#         7
+  C:000CH         LINE#         8
+  C:000EH         LINE#         9
+  C:0010H         LINE#         10
+  C:0012H         LINE#         11
+  C:0014H         LINE#         12
+  C:0016H         LINE#         13
+  C:0018H         LINE#         14
+  C:001AH         LINE#         15
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/14/2017  19:50:55  PAGE 2
+
+
+  C:001CH         LINE#         16
+  C:001EH         LINE#         17
+  C:0021H         LINE#         18
+  C:0024H         LINE#         19
+  C:0026H         LINE#         20
+  C:0029H         LINE#         21
+  C:002BH         LINE#         22
+  C:002DH         LINE#         23
+  C:002FH         LINE#         24
+  C:0031H         LINE#         25
+  C:0033H         LINE#         26
+  C:0035H         LINE#         27
+  C:0037H         LINE#         28
+  C:0039H         LINE#         29
+  C:003BH         LINE#         30
+  C:003DH         LINE#         31
+  C:003EH         LINE#         32
+  C:003FH         LINE#         33
+  C:0041H         LINE#         34
+  C:0043H         LINE#         35
+  C:0045H         LINE#         36
+  C:0047H         LINE#         37
+  C:0049H         LINE#         38
+  C:004BH         LINE#         39
+  C:004CH         LINE#         40
+  C:004FH         LINE#         41
+  C:0051H         LINE#         42
+  C:0052H         LINE#         43
+  C:0054H         LINE#         44
+  C:0056H         LINE#         45
+  C:0058H         LINE#         46
+  C:005AH         LINE#         47
+  -------         ENDMOD        RSP_2_RS_
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 005BH BYTE ( 4%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=91
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

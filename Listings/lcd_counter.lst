@@ -1,0 +1,153 @@
+A51 MACRO ASSEMBLER  LCD_COUNTER                                                          06/13/2017 19:24:01 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\lcd_counter.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE lcd_counter.asm SET(SMALL) DEBUG PRINT(.\Listings\lcd_counter.lst) OBJE
+                      CT(C:\Users\SRK\Desktop\lcd_counter.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+  0050                 1     R8                              EQU             50H                             
+                       2                                     
+0000                   3                                     ORG     00H
+0000 755030            4                                             MOV R8,#30H
+0003 7438              5                                     MOV A,#38H
+0005 115F              6                                     ACALL CMD
+0007 11B4              7                                     ACALL DELAY
+0009 740E              8                                     MOV A,#0EH
+000B 115F              9                                     ACALL CMD
+000D 11B4             10                                     ACALL DELAY
+000F 7401             11                                     MOV A,#01H
+0011 115F             12                                     ACALL CMD
+0013 11B4             13                                     ACALL DELAY
+0015 7406             14                                     MOV A,#06H
+0017 115F             15                                     ACALL CMD
+0019 11B4             16                                     ACALL DELAY
+001B 7480             17                                     MOV A,#80H
+001D 115F             18                                     ACALL CMD
+001F 11B4             19                                     ACALL DELAY
+0021 900250           20                                     MOV DPTR,#DAT1
+0024 7A0B             21                                     MOV R2,#11
+0026 116C             22                                     ACALL DAT2
+0028 11B4             23                                     ACALL DELAY
+002A 74C0             24                                     MOV A,#0C0H
+002C 115F             25                                     ACALL CMD
+002E 11B4             26                                     ACALL DELAY
+0030 7AFF             27                                     MOV R2,#0FFH
+0032 7900             28     Q1:                             MOV R1,#00
+0034 E9               29     Q2:                             MOV A,R1
+0035 75F00A           30                                     MOV B,#10
+0038 84               31                                     DIV AB
+0039 85F030           32                                     MOV 30H,B
+003C 11B4             33                                     ACALL DELAY
+003E 75F00A           34                                     MOV B,#10
+0041 84               35                                     DIV AB
+0042 85F031           36                                     MOV 31H,B
+0045 F532             37                                     MOV 32H,A
+0047 09               38                                     INC R1
+0048 117E             39                                     ACALL DAT
+004A 11B4             40                                     ACALL DELAY
+004C 1190             41                                     ACALL DAT11
+004E 11B4             42                                     ACALL DELAY
+0050 11A2             43                                     ACALL DAT12
+0052 11B4             44                                     ACALL DELAY
+0054 74C0             45                                     MOV A,#0C0H
+0056 115F             46                                     ACALL CMD
+0058 DADA             47                                     DJNZ R2,Q2
+005A B9FFD5           48                                     CJNE R1,#255,Q1
+005D 80FE             49                                     SJMP $
+005F F5A0             50     CMD:    MOV P2,A
+0061 C280             51                     CLR P0.0
+0063 C281             52                     CLR P0.1
+0065 D282             53                     SETB P0.2
+0067 11B4             54                     ACALL DELAY
+0069 C282             55                     CLR P0.2
+006B 22               56                     RET
+                      57                     
+A51 MACRO ASSEMBLER  LCD_COUNTER                                                          06/13/2017 19:24:01 PAGE     2
+
+006C E4               58     DAT2:   CLR A
+006D 93               59                     MOVC A,@A+DPTR
+006E F5A0             60     DAT6:   MOV P2,A
+0070 A3               61                     INC DPTR
+0071 D280             62                     SETB P0.0
+0073 C281             63                     CLR P0.1
+0075 D282             64                     SETB P0.2
+0077 11B4             65                     ACALL DELAY
+0079 C282             66                     CLR P0.2
+007B DAEF             67                     DJNZ R2,DAT2
+007D 22               68                     RET
+                      69     
+007E E532             70     DAT:    MOV A,32H
+0080 2550             71             ADD A,R8
+0082 F5A0             72                     MOV P2,A
+0084 D280             73                     SETB P0.0
+0086 C281             74                     CLR P0.1
+0088 D282             75                     SETB P0.2
+008A 11B4             76                     ACALL DELAY
+008C C282             77                     CLR P0.2
+008E EB               78                     MOV A,R3
+008F 22               79                     RET
+0090 E531             80     DAT11:  MOV A,31H
+0092 2550             81             ADD A,R8
+0094 F5A0             82                     MOV P2,A
+0096 D280             83                     SETB P0.0
+0098 C281             84                     CLR P0.1
+009A D282             85                     SETB P0.2
+009C 11B4             86                     ACALL DELAY
+009E C282             87                     CLR P0.2
+00A0 EB               88                     MOV A,R3
+00A1 22               89                     RET
+00A2 E530             90     DAT12:  MOV A,30H
+00A4 2550             91             ADD A,R8
+00A6 F5A0             92                     MOV P2,A
+00A8 D280             93                     SETB P0.0
+00AA C281             94                     CLR P0.1
+00AC D282             95                     SETB P0.2
+00AE 11B4             96                     ACALL DELAY
+00B0 C282             97                     CLR P0.2
+00B2 EB               98                     MOV A,R3
+00B3 22               99                     RET
+                     100                     
+00B4 78C8            101     DELAY:  MOV R0,#200
+00B6 7CC8            102     X1:             MOV R4,#200
+00B8 DCFE            103     X2:             DJNZ R4,X2
+00BA D8FA            104                     DJNZ R0,X1
+00BC 22              105                     RET
+0250                 106                             ORG 250H
+0250 4C434420        107     DAT1:   DB "LCD COUNTER",0                                      
+0254 434F554E                
+0258 54455200                
+                     108                                     END
+                                             
+A51 MACRO ASSEMBLER  LCD_COUNTER                                                          06/13/2017 19:24:01 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+CMD. . . . . . . .  C ADDR   005FH   A   
+DAT. . . . . . . .  C ADDR   007EH   A   
+DAT1 . . . . . . .  C ADDR   0250H   A   
+DAT11. . . . . . .  C ADDR   0090H   A   
+DAT12. . . . . . .  C ADDR   00A2H   A   
+DAT2 . . . . . . .  C ADDR   006CH   A   
+DAT6 . . . . . . .  C ADDR   006EH   A   
+DELAY. . . . . . .  C ADDR   00B4H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+Q1 . . . . . . . .  C ADDR   0032H   A   
+Q2 . . . . . . . .  C ADDR   0034H   A   
+R8 . . . . . . . .  N NUMB   0050H   A   
+X1 . . . . . . . .  C ADDR   00B6H   A   
+X2 . . . . . . . .  C ADDR   00B8H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

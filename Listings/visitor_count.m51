@@ -1,0 +1,128 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        07/09/2017  12:11:52  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE C:\Users\SRK\Desktop\HEX\remote2.obj TO C:\Users\SRK\Desktop\HEX\visitor_count PRINT (.\List
+>> ings\visitor_count.m51) RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  C:\Users\SRK\Desktop\HEX\remote2.obj (REMOTE2)
+
+
+LINK MAP OF MODULE:  C:\Users\SRK\Desktop\HEX\visitor_count (REMOTE2)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0306H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  C:\Users\SRK\Desktop\HEX\visitor_count (REMOTE2)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        REMOTE2
+  D:00E0H         SYMBOL        ACC
+  C:0136H         SYMBOL        AGC
+  C:0149H         SYMBOL        CHECK_AGC
+  C:0113H         SYMBOL        CMD
+  C:0120H         SYMBOL        DAT
+  C:012DH         SYMBOL        DELAY
+  D:00A8H         SYMBOL        IE
+  C:0300H         SYMBOL        LCDCMD
+  C:0100H         SYMBOL        MAIN
+  C:0103H         SYMBOL        MAIN1
+  D:0080H         SYMBOL        P0
+  D:00A0H         SYMBOL        P2
+  D:00B0H         SYMBOL        P3
+  C:0153H         SYMBOL        Q1
+  C:0161H         SYMBOL        RE_CHECK
+  D:008CH         SYMBOL        TH0
+  D:008DH         SYMBOL        TH1
+  D:008AH         SYMBOL        TL0
+  D:008BH         SYMBOL        TL1
+  D:0089H         SYMBOL        TMOD
+  B:0088H.4       SYMBOL        TR0
+  B:0088H.6       SYMBOL        TR1
+  C:010DH         SYMBOL        X1
+  C:012FH         SYMBOL        XX1
+  C:0131H         SYMBOL        XX2
+  C:0000H         LINE#         2
+  C:0003H         LINE#         5
+  C:0005H         LINE#         7
+  C:000BH         LINE#         10
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/09/2017  12:11:52  PAGE 2
+
+
+  C:000DH         LINE#         11
+  C:001BH         LINE#         14
+  C:001DH         LINE#         15
+  C:0100H         LINE#         18
+  C:0103H         LINE#         19
+  C:0104H         LINE#         20
+  C:0106H         LINE#         21
+  C:0108H         LINE#         22
+  C:010AH         LINE#         23
+  C:010BH         LINE#         24
+  C:010DH         LINE#         25
+  C:010EH         LINE#         26
+  C:0111H         LINE#         27
+  C:0113H         LINE#         29
+  C:0115H         LINE#         30
+  C:0117H         LINE#         31
+  C:0119H         LINE#         32
+  C:011BH         LINE#         33
+  C:011DH         LINE#         34
+  C:011FH         LINE#         35
+  C:0120H         LINE#         37
+  C:0122H         LINE#         38
+  C:0124H         LINE#         39
+  C:0126H         LINE#         40
+  C:0128H         LINE#         41
+  C:012AH         LINE#         42
+  C:012CH         LINE#         43
+  C:012DH         LINE#         46
+  C:012FH         LINE#         47
+  C:0131H         LINE#         48
+  C:0133H         LINE#         49
+  C:0135H         LINE#         50
+  C:0136H         LINE#         52
+  C:0138H         LINE#         53
+  C:013AH         LINE#         54
+  C:013DH         LINE#         55
+  C:0140H         LINE#         56
+  C:0143H         LINE#         57
+  C:0146H         LINE#         58
+  C:0148H         LINE#         59
+  C:0149H         LINE#         61
+  C:014BH         LINE#         62
+  C:014DH         LINE#         63
+  C:0150H         LINE#         64
+  C:0152H         LINE#         65
+  C:0153H         LINE#         66
+  C:0155H         LINE#         67
+  C:0158H         LINE#         68
+  C:015BH         LINE#         69
+  C:015EH         LINE#         70
+  C:0160H         LINE#         71
+  C:0161H         LINE#         73
+  C:0164H         LINE#         74
+  -------         ENDMOD        REMOTE2
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0077H BYTE ( 5%) *
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/09/2017  12:11:52  PAGE 3
+
+
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=774
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

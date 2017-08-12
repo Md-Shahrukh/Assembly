@@ -1,0 +1,103 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/13/2017  15:04:08  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE C:\Users\SRK\Desktop\lcd_dptr.obj TO C:\Users\SRK\Desktop\LCD_DPTR PRINT (.\Listings\LCD_DPT
+>> R.m51) RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  C:\Users\SRK\Desktop\lcd_dptr.obj (LCD_DPTR)
+
+
+LINK MAP OF MODULE:  C:\Users\SRK\Desktop\LCD_DPTR (LCD_DPTR)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0268H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  C:\Users\SRK\Desktop\LCD_DPTR (LCD_DPTR)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        LCD_DPTR
+  C:0036H         SYMBOL        CMD
+  C:0045H         SYMBOL        DAT
+  C:0250H         SYMBOL        DAT1
+  C:0043H         SYMBOL        DAT2
+  C:025BH         SYMBOL        DAT3
+  C:0055H         SYMBOL        DELAY
+  D:0080H         SYMBOL        P0
+  D:00A0H         SYMBOL        P2
+  C:0057H         SYMBOL        X1
+  C:0059H         SYMBOL        X2
+  C:0034H         SYMBOL        X3
+  C:0000H         LINE#         2
+  C:0002H         LINE#         3
+  C:0004H         LINE#         4
+  C:0006H         LINE#         5
+  C:0008H         LINE#         6
+  C:000AH         LINE#         7
+  C:000CH         LINE#         8
+  C:000EH         LINE#         9
+  C:0010H         LINE#         10
+  C:0012H         LINE#         11
+  C:0014H         LINE#         12
+  C:0016H         LINE#         13
+  C:0018H         LINE#         14
+  C:001AH         LINE#         15
+  C:001CH         LINE#         16
+  C:001EH         LINE#         17
+  C:0021H         LINE#         18
+  C:0023H         LINE#         19
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/13/2017  15:04:08  PAGE 2
+
+
+  C:0025H         LINE#         20
+  C:0027H         LINE#         21
+  C:0029H         LINE#         22
+  C:002BH         LINE#         23
+  C:002DH         LINE#         24
+  C:0030H         LINE#         25
+  C:0032H         LINE#         26
+  C:0034H         LINE#         27
+  C:0036H         LINE#         28
+  C:0038H         LINE#         29
+  C:003AH         LINE#         30
+  C:003CH         LINE#         31
+  C:003EH         LINE#         32
+  C:0040H         LINE#         33
+  C:0042H         LINE#         34
+  C:0043H         LINE#         35
+  C:0044H         LINE#         36
+  C:0045H         LINE#         37
+  C:0047H         LINE#         38
+  C:0048H         LINE#         39
+  C:004AH         LINE#         40
+  C:004CH         LINE#         41
+  C:004EH         LINE#         42
+  C:0050H         LINE#         43
+  C:0052H         LINE#         44
+  C:0054H         LINE#         45
+  C:0055H         LINE#         46
+  C:0057H         LINE#         47
+  C:0059H         LINE#         48
+  C:005BH         LINE#         49
+  C:005DH         LINE#         50
+  -------         ENDMOD        LCD_DPTR
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0076H BYTE ( 5%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=616
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

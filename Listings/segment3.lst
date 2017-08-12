@@ -1,0 +1,63 @@
+A51 MACRO ASSEMBLER  SEGMENT3                                                             06/05/2017 10:50:00 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\segment3.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE segment3.asm SET(SMALL) DEBUG PRINT(.\Listings\segment3.lst) OBJECT(C:\
+                      Users\SRK\Desktop\HEX\segment3.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                     org 00h
+0000 7AFA              2     X4:             MOV R2,#250
+0002 7BFA              3                     MOV R3,#250
+0004 7402              4     X3:             MOV A,#02
+0006 75B0FE            5                     MOV P3,#11111110B
+0009 7590A4            6                     MOV P1,#10100100B
+000C 1136              7                     ACALL DELAY
+000E E503              8                     MOV A,03
+0010 75B0FD            9                     MOV P3,#11111101B
+0013 7590B0           10                     MOV P1,#10110000B
+0016 1136             11                     ACALL DELAY
+0018 1A               12                     DEC R2
+0019 BA00E8           13                     CJNE R2,#00,X3
+001C 7404             14     X5:             MOV A,#04
+001E 75B0FE           15                     MOV P3,#11111110B
+0021 759099           16                     MOV P1,#10011001B
+0024 1136             17                     ACALL DELAY
+0026 E505             18                     MOV A,05
+0028 75B0FD           19                     MOV P3,#11111101B
+002B 759092           20                     MOV P1,#10010010B
+002E 1136             21                     ACALL DELAY
+0030 1B               22                     DEC R3
+0031 BB00E8           23                     CJNE R3,#00,X5
+0034 80CA             24                     SJMP X4
+0036 7864             25     DELAY:  MOV R0,#100
+0038 7932             26     X1:             MOV R1,#50
+003A D9FE             27     X2:             DJNZ R1,X2
+003C D8FA             28                     DJNZ R0,X1
+003E 22               29                     RET
+                      30                     
+                      31                     END
+A51 MACRO ASSEMBLER  SEGMENT3                                                             06/05/2017 10:50:00 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   0036H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+X1 . . . . . . . .  C ADDR   0038H   A   
+X2 . . . . . . . .  C ADDR   003AH   A   
+X3 . . . . . . . .  C ADDR   0004H   A   
+X4 . . . . . . . .  C ADDR   0000H   A   
+X5 . . . . . . . .  C ADDR   001CH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

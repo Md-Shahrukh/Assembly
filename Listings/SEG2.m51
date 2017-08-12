@@ -1,0 +1,110 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/04/2017  19:42:16  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE C:\Users\SRK\Desktop\HEX\segment2.obj, C:\Users\SRK\Desktop\HEX\segment3.obj TO C:\Users\SRK
+>> \Desktop\HEX\SEG2 PRINT (.\Listings\SEG2.m51) RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  C:\Users\SRK\Desktop\HEX\segment2.obj (SEGMENT2)
+  C:\Users\SRK\Desktop\HEX\segment3.obj (SEGMENT3)
+
+
+LINK MAP OF MODULE:  C:\Users\SRK\Desktop\HEX\SEG2 (SEGMENT2)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     001FH     ABSOLUTE     
+* OVERLAP * CODE    0000H     0040H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  C:\Users\SRK\Desktop\HEX\SEG2 (SEGMENT2)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        SEGMENT2
+  C:0016H         SYMBOL        DELAY
+  D:0090H         SYMBOL        P1
+  D:00B0H         SYMBOL        P3
+  C:0018H         SYMBOL        X1
+  C:001AH         SYMBOL        X2
+  C:0000H         SYMBOL        X3
+  C:0000H         LINE#         2
+  C:0002H         LINE#         3
+  C:0005H         LINE#         4
+  C:0008H         LINE#         5
+  C:000AH         LINE#         6
+  C:000CH         LINE#         7
+  C:000FH         LINE#         8
+  C:0012H         LINE#         9
+  C:0014H         LINE#         10
+  C:0016H         LINE#         11
+  C:0018H         LINE#         12
+  C:001AH         LINE#         13
+  C:001CH         LINE#         14
+  C:001EH         LINE#         16
+  -------         ENDMOD        SEGMENT2
+
+  -------         MODULE        SEGMENT3
+  C:002EH         SYMBOL        DELAY
+  C:0037H         SYMBOL        DELAY1
+  D:0090H         SYMBOL        P1
+  D:00B0H         SYMBOL        P3
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/04/2017  19:42:16  PAGE 2
+
+
+  C:0039H         SYMBOL        Q1
+  C:003BH         SYMBOL        Q2
+  C:0030H         SYMBOL        X1
+  C:0032H         SYMBOL        X2
+  C:0000H         SYMBOL        X3
+  C:0000H         LINE#         2
+  C:0002H         LINE#         3
+  C:0005H         LINE#         4
+  C:0008H         LINE#         5
+  C:000AH         LINE#         6
+  C:000CH         LINE#         7
+  C:000FH         LINE#         8
+  C:0012H         LINE#         9
+  C:0014H         LINE#         10
+  C:0016H         LINE#         11
+  C:0018H         LINE#         12
+  C:001BH         LINE#         13
+  C:001EH         LINE#         14
+  C:0020H         LINE#         15
+  C:0022H         LINE#         16
+  C:0025H         LINE#         17
+  C:0028H         LINE#         18
+  C:002AH         LINE#         19
+  C:002CH         LINE#         20
+  C:002EH         LINE#         21
+  C:0030H         LINE#         22
+  C:0032H         LINE#         23
+  C:0034H         LINE#         24
+  C:0036H         LINE#         25
+  C:0037H         LINE#         27
+  C:0039H         LINE#         28
+  C:003BH         LINE#         29
+  C:003DH         LINE#         30
+  C:003FH         LINE#         31
+  -------         ENDMOD        SEGMENT3
+
+*** WARNING L5: CODE SPACE MEMORY OVERLAP
+    FROM:    0000H
+    TO:      001EH
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 005FH BYTE ( 4%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=95
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

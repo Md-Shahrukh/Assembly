@@ -1,0 +1,126 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/04/2017  18:28:36  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\segment1.obj TO .\Objects\IoT_energymeter PRINT (.\Listings\IoT_energymeter.m51) R
+>> AMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\segment1.obj (SEGMENT1)
+
+
+LINK MAP OF MODULE:  .\Objects\IoT_energymeter (SEGMENT1)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0084H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\IoT_energymeter (SEGMENT1)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        SEGMENT1
+  C:0077H         SYMBOL        DELAY
+  D:0090H         SYMBOL        P1
+  D:00B0H         SYMBOL        P3
+  C:007DH         SYMBOL        Q1
+  C:007BH         SYMBOL        Q2
+  C:0079H         SYMBOL        Q3
+  C:0010H         SYMBOL        X1
+  C:005DH         SYMBOL        X10
+  C:0068H         SYMBOL        X11
+  C:0073H         SYMBOL        X12
+  C:0004H         SYMBOL        X2
+  C:001BH         SYMBOL        X3
+  C:0026H         SYMBOL        X4
+  C:0002H         SYMBOL        X5
+  C:0031H         SYMBOL        X6
+  C:003CH         SYMBOL        X7
+  C:0047H         SYMBOL        X8
+  C:0052H         SYMBOL        X9
+  C:0000H         LINE#         2
+  C:0002H         LINE#         3
+  C:0004H         LINE#         4
+  C:0005H         LINE#         5
+  C:0008H         LINE#         6
+  C:000BH         LINE#         7
+  C:000CH         LINE#         8
+  C:000EH         LINE#         9
+  C:0010H         LINE#         10
+  C:0013H         LINE#         11
+  C:0016H         LINE#         12
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/04/2017  18:28:36  PAGE 2
+
+
+  C:0017H         LINE#         13
+  C:0019H         LINE#         14
+  C:001BH         LINE#         15
+  C:001EH         LINE#         16
+  C:0021H         LINE#         17
+  C:0022H         LINE#         18
+  C:0024H         LINE#         19
+  C:0026H         LINE#         20
+  C:0029H         LINE#         21
+  C:002CH         LINE#         22
+  C:002DH         LINE#         23
+  C:002FH         LINE#         24
+  C:0031H         LINE#         25
+  C:0034H         LINE#         26
+  C:0037H         LINE#         27
+  C:0038H         LINE#         28
+  C:003AH         LINE#         29
+  C:003CH         LINE#         30
+  C:003FH         LINE#         31
+  C:0042H         LINE#         32
+  C:0043H         LINE#         33
+  C:0045H         LINE#         34
+  C:0047H         LINE#         35
+  C:004AH         LINE#         36
+  C:004DH         LINE#         37
+  C:004EH         LINE#         38
+  C:0050H         LINE#         39
+  C:0052H         LINE#         40
+  C:0055H         LINE#         41
+  C:0058H         LINE#         42
+  C:0059H         LINE#         43
+  C:005BH         LINE#         44
+  C:005DH         LINE#         45
+  C:0060H         LINE#         46
+  C:0063H         LINE#         47
+  C:0064H         LINE#         48
+  C:0066H         LINE#         49
+  C:0068H         LINE#         50
+  C:006BH         LINE#         51
+  C:006EH         LINE#         52
+  C:006FH         LINE#         53
+  C:0071H         LINE#         54
+  C:0073H         LINE#         55
+  C:0075H         LINE#         56
+  C:0077H         LINE#         57
+  C:0079H         LINE#         58
+  C:007BH         LINE#         59
+  C:007DH         LINE#         60
+  C:007FH         LINE#         61
+  C:0081H         LINE#         62
+  C:0083H         LINE#         63
+  -------         ENDMOD        SEGMENT1
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0084H BYTE ( 6%) *
+******************************************************************************
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/04/2017  18:28:36  PAGE 3
+
+
+Program Size: data=8.0 xdata=0 code=132
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

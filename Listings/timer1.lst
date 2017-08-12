@@ -1,0 +1,49 @@
+A51 MACRO ASSEMBLER  TIMER1                                                               06/10/2017 13:29:11 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\timer1.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE timer1.asm SET(SMALL) DEBUG PRINT(.\Listings\timer1.lst) OBJECT(C:\User
+                      s\SRK\Desktop\HEX\timer1.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                             ORG 00H
+0000 758901            2                             MOV TMOD,#01
+0003 78C8              3     HERE:           MOV R0,#200
+0005 B290              4                             CPL P1.0
+0007 110B              5                             ACALL DELAY
+0009 80F8              6                             SJMP HERE
+000B D28C              7     DELAY:          SETB TR0
+000D 758A01            8     AGAIN:          MOV TL0,#001H
+0010 758C00            9                             MOV TH0,#000H
+0013 308DFD           10     AGAIN1:         JNB TF0,AGAIN1
+0016 D8F5             11                             DJNZ R0,AGAIN
+0018 C28C             12                             CLR TR0
+001A C28D             13                             CLR TF0
+001C 22               14                             RET
+                      15                             END
+A51 MACRO ASSEMBLER  TIMER1                                                               06/10/2017 13:29:11 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AGAIN. . . . . . .  C ADDR   000DH   A   
+AGAIN1 . . . . . .  C ADDR   0013H   A   
+DELAY. . . . . . .  C ADDR   000BH   A   
+HERE . . . . . . .  C ADDR   0003H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

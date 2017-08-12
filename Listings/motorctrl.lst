@@ -1,0 +1,195 @@
+A51 MACRO ASSEMBLER  MOTORCTRL                                                            06/12/2017 14:30:45 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN C:\Users\SRK\Desktop\HEX\motorctrl.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE motorctrl.asm SET(SMALL) DEBUG PRINT(.\Listings\motorctrl.lst) OBJECT(C
+                      :\Users\SRK\Desktop\HEX\motorctrl.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+  0080                 1     DC1             BIT             P0.0
+  0081                 2     DC2             BIT             P0.1            
+0000                   3                     ORG 00H
+0000 7590FF            4     X6:             MOV P1,#11111111B
+0003 79FA              5                     MOV R1,#250
+0005 311C              6                     ACALL DELAY
+                       7                     
+0007 20900F            8                     JB P1.0,X1
+000A C280              9     X0:             CLR DC1
+000C D281             10                     SETB DC2
+000E 309323           11                     JNB P1.3,X10
+0011 30921A           12                     JNB P1.2,X4
+0014 309105           13                     JNB P1.1,X2
+0017 80F1             14                     SJMP X0
+                      15                     
+0019 20910F           16     X1:             JB P1.1,X3
+001C C281             17     X2:             CLR DC2
+001E D280             18                     SETB DC1
+0020 30935A           19                     JNB P1.3,X11
+0023 309208           20                     JNB P1.2,X4
+0026 3090E1           21                     JNB P1.0,X0
+0029 80F1             22                     SJMP X2
+                      23                     
+002B 209206           24     X3:             JB P1.2,X10
+002E C280             25     X4:             CLR DC1
+0030 C281             26                     CLR DC2
+0032 80CC             27                     SJMP X6
+                      28                     
+0034 209346           29     X10:    JB P1.3,X11
+0037 00               30                     NOP
+0038 00               31                     NOP
+0039 3093FD           32     NK:     JNB P1.3, NK
+003C 3090FD           33     H8:             JNB P1.0,H8
+003F C280             34     X5:             CLR DC1
+0041 D281             35                     SETB DC2
+0043 78C8             36                     MOV R0,#200
+0045 311C             37                     ACALL DELAY
+0047 C281             38                     CLR DC2
+0049 7832             39                     MOV R0,#50
+004B 311C             40                     ACALL DELAY
+004D 30930B           41                     JNB P1.3,X7
+0050 3090B7           42                     JNB P1.0,X0
+0053 3092D8           43                     JNB P1.2,X4
+0056 309129           44                     JNB P1.1,NK2
+0059 80E4             45                     SJMP X5
+                      46                     
+005B 3093FD           47     X7:             JNB P1.3,X7
+005E 3090FD           48     H4:             JNB P1.0,H4
+0061 C280             49                     CLR DC1
+0063 D281             50                     SETB DC2
+0065 7864             51                     MOV R0,#100
+0067 311C             52                     ACALL DELAY
+0069 C281             53                     CLR DC2
+006B 7864             54                     MOV R0,#100
+006D 311C             55                     ACALL DELAY
+006F 309098           56                     JNB P1.0,X0
+0072 30912F           57                     JNB P1.1,X9
+A51 MACRO ASSEMBLER  MOTORCTRL                                                            06/12/2017 14:30:45 PAGE     2
+
+0075 3092B6           58                     JNB P1.2,X4
+0078 30944B           59                     JNB P1.4,H1
+007B 80DE             60                     SJMP X7
+                      61                     
+007D 209380           62     X11:    JB P1.3,X6
+0080 00               63                     NOP
+0081 00               64                     NOP
+0082 3093FD           65     NK2:    JNB P1.3,NK2
+0085 3091FD           66     H5:             JNB P1.1,H5
+0088 C281             67     X8:             CLR DC2
+008A D280             68                     SETB DC1
+008C 78C8             69                     MOV R0,#200
+008E 311C             70                     ACALL DELAY
+0090 C280             71                     CLR DC1
+0092 7832             72                     MOV R0,#50
+0094 311C             73                     ACALL DELAY
+0096 30930B           74                     JNB P1.3,X9
+0099 3090A0           75                     JNB P1.0,H8
+009C 30916B           76                     JNB P1.1,NK1
+009F 30928C           77                     JNB P1.2,X4
+00A2 80E4             78                     SJMP X8
+                      79                     
+00A4 3093FD           80     X9:             JNB P1.3,X9
+00A7 3091FD           81     H3:             JNB P1.1,H3
+00AA C281             82                     CLR DC2
+00AC D280             83                     SETB DC1
+00AE 7864             84                     MOV R0,#100
+00B0 311C             85                     ACALL DELAY
+00B2 C280             86                     CLR DC1
+00B4 7864             87                     MOV R0,#100
+00B6 311C             88                     ACALL DELAY
+00B8 3090A0           89                     JNB P1.0,X7
+00BB 30914C           90                     JNB P1.1,NK1
+00BE 309252           91                     JNB P1.2,X14
+00C1 309424           92                     JNB P1.4,H2
+00C4 80DE             93                     SJMP X9
+                      94                     
+00C6 3094FD           95     H1:             JNB P1.4,H1
+00C9 C280             96                     CLR DC1
+00CB D281             97                     SETB DC2
+00CD 78C8             98                     MOV R0,#200
+00CF 311C             99                     ACALL DELAY
+00D1 C281            100                     CLR DC2
+00D3 7832            101                     MOV R0,#50
+00D5 311C            102                     ACALL DELAY
+00D7 309036          103                     JNB P1.0,X13
+00DA 30912D          104                     JNB P1.1,NK1
+00DD 309233          105                     JNB P1.2,X14
+00E0 309333          106                     JNB P1.3,X15
+00E3 30942A          107                     JNB P1.4,X13
+00E6 80DE            108                     SJMP H1
+                     109                     
+00E8 3094FD          110     H2:             JNB P1.4,H2
+00EB C281            111                     CLR DC2
+00ED D280            112                     SETB DC1
+00EF 78C8            113                     MOV R0,#200
+00F1 311C            114                     ACALL DELAY
+00F3 C280            115                     CLR DC1
+00F5 7832            116                     MOV R0,#50
+00F7 311C            117                     ACALL DELAY
+00F9 309014          118                     JNB P1.0,X13
+00FC 30910B          119                     JNB P1.1,NK1
+00FF 309211          120                     JNB P1.2,X14
+0102 309314          121                     JNB P1.3,X16
+0105 309402          122                     JNB P1.4,NK1
+0108 80DE            123                     SJMP H2
+A51 MACRO ASSEMBLER  MOTORCTRL                                                            06/12/2017 14:30:45 PAGE     3
+
+                     124                     
+010A 02001C          125     NK1:    LJMP X2
+010D 020000          126     X12:    LJMP X6
+0110 02000A          127     X13:    LJMP X0
+0113 02002E          128     X14:    LJMP X4
+0116 020034          129     X15:    LJMP X10        
+0119 02007D          130     X16:    LJMP X11
+                     131     
+011C 8000            132     DELAY:  SJMP Q10
+011E D8FE            133     Q10:    DJNZ R0,Q10
+0120 22              134                     RET
+                     135                     END
+A51 MACRO ASSEMBLER  MOTORCTRL                                                            06/12/2017 14:30:45 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DC1. . . . . . . .  B ADDR   0080H.0 A   
+DC2. . . . . . . .  B ADDR   0080H.1 A   
+DELAY. . . . . . .  C ADDR   011CH   A   
+H1 . . . . . . . .  C ADDR   00C6H   A   
+H2 . . . . . . . .  C ADDR   00E8H   A   
+H3 . . . . . . . .  C ADDR   00A7H   A   
+H4 . . . . . . . .  C ADDR   005EH   A   
+H5 . . . . . . . .  C ADDR   0085H   A   
+H8 . . . . . . . .  C ADDR   003CH   A   
+NK . . . . . . . .  C ADDR   0039H   A   
+NK1. . . . . . . .  C ADDR   010AH   A   
+NK2. . . . . . . .  C ADDR   0082H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+Q10. . . . . . . .  C ADDR   011EH   A   
+X0 . . . . . . . .  C ADDR   000AH   A   
+X1 . . . . . . . .  C ADDR   0019H   A   
+X10. . . . . . . .  C ADDR   0034H   A   
+X11. . . . . . . .  C ADDR   007DH   A   
+X12. . . . . . . .  C ADDR   010DH   A   
+X13. . . . . . . .  C ADDR   0110H   A   
+X14. . . . . . . .  C ADDR   0113H   A   
+X15. . . . . . . .  C ADDR   0116H   A   
+X16. . . . . . . .  C ADDR   0119H   A   
+X2 . . . . . . . .  C ADDR   001CH   A   
+X3 . . . . . . . .  C ADDR   002BH   A   
+X4 . . . . . . . .  C ADDR   002EH   A   
+X5 . . . . . . . .  C ADDR   003FH   A   
+X6 . . . . . . . .  C ADDR   0000H   A   
+X7 . . . . . . . .  C ADDR   005BH   A   
+X8 . . . . . . . .  C ADDR   0088H   A   
+X9 . . . . . . . .  C ADDR   00A4H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

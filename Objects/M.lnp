@@ -1,0 +1,3 @@
+".\Objects\password.obj" 
+TO ".\Objects\M" 
+PRINT(".\Listings\M.m51") RAMSIZE(256) 
